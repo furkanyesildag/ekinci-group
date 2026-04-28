@@ -1,26 +1,28 @@
 import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { publicImage } from '@/lib/publicImage'
 
+/** Gerçek portre görselleri olmadığı için yerel proje/kurumsal fotoğraflarıyla temsil edilir */
 const leaders = [
   {
-    name: 'Ahmet EKİNCİ',
-    title: 'Yönetim Kurulu Başkanı',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBmHHXbzrbAiSbGK4W-5BIfecXAX-q5fcx2oS_xGBWsfv0fXr_qRHZCEEHQ9XCfZQlWEPqF0TVoO4pgt3M-0AMZEFhLjoqNoNwZZmF86xrQeL80jYo97JD8_9suArregWBZw0vZS2Gil6z3iqQHJNHcCoXjzV7uh2uL99Mrr8Wa8fIU6_8U944Cq6kJngCw9CjLSCuiHmOsTZqgUddJBOnMc9kUiy0nnUANyRuWtXTVbRPvtipJWj0TDXo69xlPs2usk-K93Vqca0ab',
+    name: 'Yönetim Kurulu',
+    title: 'Strateji ve kurumsal işleyiş',
+    img: publicImage('armada/armada.jpeg'),
   },
   {
-    name: 'Mehmet EKİNCİ',
-    title: 'CEO & Genel Müdür',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuBmzQm-czqTsjlYexf94z2DKQOLVRiqfHYVx3WZjHNyL_C8xojqI8tR09_aiVruqwTkTJHwawymq0cubGWOPp2WqCuVEvZu0aDoNg1ZEXnvT1-du0OGI0X0HGCnVao2G7EytuY-YGx6WtL9VciTJgawujr9mTtuDcEOtSVB4o4wOyQzUw1N8CshkF9PDM5AvIY64BwqL-IDHFnQ_YJHIzBsZFKU8XbSlto-sDB69FY7XGfCEfY7UPJZD2pxsX4E-gSMuvbaosyyZlKm',
+    name: 'Teknik Koordinasyon',
+    title: 'İnşaat ve mühendislik',
+    img: publicImage('royalpark/royal.jpeg'),
   },
   {
-    name: 'Zeynep ARSLAN',
-    title: 'Baş Mimar',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuC0D3GtHeo0xDHqBZQVCH-BWWdNar25xmA_Dqawgu0hGTH1jln1Q6Zdz9ubX_v_BAm3KtgG4VPKOcwJYaP5U2xAhdV8KEtp8XrfLnhanr8aIJ1qVPgsKUChO8gxuAWjPCgNT016D16LxowOAioOktjxJxNmswP03i9OYZs8Gf6JaQQ6FGR5m6ERdpJjBtG2dTqCIlW3oFOh_vzsFrbSoBKXqxdx7ox0LLdWbRDMI1KgYq_OiFmoTPndfaphzBGDtJx8uFtIdSIdiT-d',
+    name: 'Proje Geliştirme',
+    title: 'Planlama ve sahada uygulama',
+    img: publicImage('plaza/plaza.jpeg'),
   },
   {
-    name: 'Can YILMAZ',
-    title: 'Proje Geliştirme Direktörü',
-    img: 'https://lh3.googleusercontent.com/aida-public/AB6AXuCSf2V_Wr3DKlAQ7tKlYJhIr0eKB1sehKwRoVHw-ACTslH7bMfKthe-FKV8FyckFk1rKCikfZj83oyS5L2I9LujZAwTXj14Ejv-BGtDiR_G6TctBzFBmnnJX-nvjHoN1DknAq5cUeo8Oest8CoFRmQpW1xS2H-76-whtGbyunlLbouBA9BxNc2CackCMkb3JOdXtLGYQcB0bfQZ5TfvO89Gx_QZP9M8S0adcyijlQJihvmNj7qPFBpefXW1I4Hr-K4g9nDwMqdqnZQG',
+    name: 'Müşteri İlişkileri',
+    title: 'Satış ve teslim süreçleri',
+    img: publicImage('ekinci.jpg'),
   },
 ]
 
@@ -28,10 +30,13 @@ export default function LeadershipGrid() {
   return (
     <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
       <div className="text-center mb-14">
-        <SectionLabel>Liderlik Ekibi</SectionLabel>
+        <SectionLabel>Ekibimiz</SectionLabel>
         <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tighter text-on-surface">
-          Vizyonumuzu şekillendirenler
+          Projelerimizi taşıyan yapı
         </h2>
+        <p className="mt-4 text-sm text-on-surface-variant font-body max-w-2xl mx-auto leading-relaxed">
+          Kişisel tanıtım görselleri yerine, Ekinci Group’un üstlendiği projelerden oluşturulmuş görsel özetler.
+        </p>
       </div>
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-8 lg:gap-12">

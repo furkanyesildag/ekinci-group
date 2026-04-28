@@ -122,7 +122,7 @@ export default function HeroSlider() {
       {/* ── ANA İÇERİK ── */}
       <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pointer-events-none">
         <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-primary-fixed/80 font-body mb-5">
-          Est. 1974 · İstanbul · Bodrum · Ankara
+          Est. 1968 · Siirt · Türkiye geneli
         </p>
         <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tighter leading-[1.05] max-w-5xl mb-5 text-balance">
           Yarının Yaşam<br />
@@ -130,7 +130,7 @@ export default function HeroSlider() {
           Bugünden İnşa Ediyoruz
         </h1>
         <p className="text-base md:text-lg text-white/70 font-body max-w-xl mb-10 leading-relaxed">
-          50 yılı aşkın tecrübe, 2.5 milyon m² tamamlanmış alan ve sınırsız mükemmellik anlayışı.
+          Yarım asırdan fazla tecrübe; konut, ticari yapılar ve kentsel dönüşümde güvenilir teslim.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 items-center pointer-events-auto">
           <Link href="/projeler"

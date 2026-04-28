@@ -1,6 +1,7 @@
 import Image from 'next/image'
+import { publicImage } from '@/lib/publicImage'
 
-const HERO_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuAInETeZCwhsIugjjuF4AsvXv7hZQS5RU2HQd3CkZee0Qu1cAt3Yi5ZFcjqoMa9sJ30LW2WSMjlizbfE4SECkCJh9S0Sd0CtG_AY-wD3ixIZdbAbgpQVo6xupCWZabkhishauZ8biuiIPYWSoxp0Fh329Qyno1-Si-44jZhOaN9Ky_761iNzLZAi1CgDiKUsxmD-srbycfFqfLY7c3XK8xvs4ewHaDlKl1-fkBsLazdmU0bv2PGhdrGk9cji6Aix3nNRNrrkug7Lyr3'
+const HERO_IMG = publicImage('ekinci.jpg')
 
 export default function ContactHero() {
   return (

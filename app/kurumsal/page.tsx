@@ -7,7 +7,8 @@ import SustainabilityBanner from '@/components/kurumsal/SustainabilityBanner'
 
 export const metadata: Metadata = {
   title: 'Kurumsal',
-  description: '1974\'ten bu yana güven, estetik ve kalite ilkeleriyle inşaat sektörünün öncüsü olan EKİNCİ GROUP\'u tanıyın.',
+  description:
+    '1968\'den beri Türkiye\'de inşaat faaliyeti yürüten Ekinci Şirketler Grubu; güven, kalite ve müşteri memnuniyeti.',
 }
 
 export default function KurumsalPage() {

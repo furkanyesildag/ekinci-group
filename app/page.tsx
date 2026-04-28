@@ -6,8 +6,9 @@ import ProjectCarousel from '@/components/home/ProjectCarousel'
 import CtaBanner from '@/components/home/CtaBanner'
 
 export const metadata: Metadata = {
-  title: 'EKİNCİ GROUP İNŞAAT | Geleceğin Yaşam Alanlarını İnşa Ediyoruz',
-  description: '50 yılı aşkın tecrübemizle İstanbul, Bodrum ve Ankara\'da lüks konut ve ticari projeler geliştiriyoruz. 2.5 milyon m² tamamlanmış alan.',
+  title: 'EKİNCİ GROUP İNŞAAT | Kalite, Güven, Gelecek',
+  description:
+    '1968\'den beri Türkiye genelinde konut ve ticari projeler. Ekinci Şirketler Grubu ile güvenilir inşaat ve zamanında teslim.',
 }
 
 export default function HomePage() {

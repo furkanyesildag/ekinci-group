@@ -1,265 +1,400 @@
-import type { Project, ProjectCategory, ProjectStatus } from '@/types'
+import type { Project } from '@/types'
+import { publicImage as img } from '@/lib/publicImage'
 
-// ─── Unsplash yüksek kaliteli mimari/lüks yaşam fotoğrafları ───────────────
-const U = (id: string, w = 1920, q = 95) =>
-  `https://images.unsplash.com/photo-${id}?w=${w}&q=${q}&auto=format&fit=crop`
 
-const IMG = {
-  // ── HERO SLİDER (featured projelerin hero görselleri) ─────────────────────
-  // Elysium Heights — Bodrum sonsuzluk havuzlu ultra-lüks villa
-  elysiumHero:     U('1613977257363-707ba9348227'),
-  // Azure Coast — Akdeniz kıyısında beyaz taş villa
-  azureCoast:      U('1580587771525-78b9dba3b914'),
-  // Vertex Tower — modern cam gökdelen, şehir silüeti
-  vertexTower:     U('1486325212027-8081e485255e'),
-  // Amber Center — çağdaş şehir yapısı
-  amberCenter:     U('1545324418-cc1a3fa10c00'),
-  // Serene Atoll — minimalist kıyı rezidansı
-  sereneAtoll:     U('1564013799919-ab600027ffc6'),
-
-  // ── VİZYON BÖLÜMÜ ─────────────────────────────────────────────────────────
-  // Kaliteli lüks villa dış cephe gün batımı ışığında
-  vision:          U('1600585154340-be6161a56a0c', 1200),
-
-  // ── PROJE GALERİ ──────────────────────────────────────────────────────────
-  // infinity havuz & teras
-  gallery1:        U('1613490493576-7fde63acd811', 1200),
-  // lüks iç mekan / yaşam odası
-  gallery2:        U('1600607687939-ce8a6d349a58', 1200),
-  // denize sıfır teras / dış mekan
-  gallery3:        U('1600566753190-17f0baa2a6c3', 1200),
-  // modern yatak odası
-  gallery4:        U('1631049307264-da0ec9d70304', 1200),
-  // lüks mutfak/yemek odası
-  gallery5:        U('1556909114-f6e7ad7d3136', 1200),
-  // mimari detay / havuz kenarı
-  gallery6:        U('1512917774080-9991f1c4c750', 1200),
-  // panoramik şehir manzarası
-  gallery7:        U('1477959858617-67f85cf4f1df', 1200),
-  // ofis lobi / kurumsal iç mekan
-  gallery8:        U('1497366216548-37526070297c', 1200),
-  // doğal taş & ahşap villa detayı
-  gallery9:        U('1600047509807-ba8f99d2cdde', 1200),
-  // sonsuzluk havuz gece görünümü
-  gallery10:       U('1571896349842-33c89424de2d', 1200),
+/** Vizyon ve ortak bölümlerde kullanılan görsel */
+export const PROJECT_IMAGES = {
+  vision: img('ekinci.jpg'),
 }
 
 export const PROJECTS: Project[] = [
   {
-    slug:     'elysium-heights',
-    name:     'Elysium Heights',
-    location: 'Yalıkavak, Bodrum',
-    city:     'Bodrum',
-    status:   'SATIŞTA',
+    slug: 'mar-vista',
+    name: 'Mar Vista',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
     category: 'KONUT',
-    year:     2025,
-    tagline:  'Ege\'nin Sonsuz Ufkuna Açılan Kapı',
-    description: 'Bodrum\'un en prestijli konumunda, doğa ile mimarinin mükemmel birleşimi. Panoramik deniz manzarası ve özel marina erişimi.',
+    year: 2022,
+    tagline: 'Şehir manzarasına açılan yaşam',
+    description:
+      'Modern cephe ve geniş peyzaj alanlarıyla öne çıkan konut projesi.',
     narrative: [
-      'Elysium Heights, EKİNCİ GROUP\'un Ege kıyısındaki en iddialı projesidir. Yalıkavak\'ın bozulmamış doğal güzellikleri arasında yükselen bu rezidans, her detayında mükemmeliyetin izlerini taşır.',
-      'Proje, 180 derecelik panoramik deniz manzarası sunan özel villalar ve rezidanslardan oluşmaktadır. Bodrum\'un eşsiz akbatı ışığıyla tasarlanan iç mekanlar, Akdeniz yaşam kültürünü modern konforla buluşturmaktadır.',
+      'Mar Vista, bölgenin ihtiyaçlarına göre tasarlanmış konforlu daire seçenekleri sunar.',
+      'Detaylı cephe çözümleri ve ortak yaşam alanlarıyla ailelere güvenli bir yuva hedeflenmiştir.',
     ],
-    heroImage:     { src: IMG.elysiumHero,   alt: 'Elysium Heights — Bodrum sonsuzluk havuzlu lüks villa' },
+    heroImage: {
+      src: img('marvista/1.jpg'),
+      alt: 'Mar Vista konut projesi',
+    },
     galleryImages: [
-      { src: IMG.gallery1,  alt: 'Elysium Heights infinity pool', label: 'Infinity Havuz' },
-      { src: IMG.gallery2,  alt: 'Elysium Heights yaşam odası',   label: 'Ana Salon' },
-      { src: IMG.gallery3,  alt: 'Elysium Heights teras',         label: 'Deniz Terası' },
-      { src: IMG.gallery10, alt: 'Elysium Heights gece havuz',    label: 'Gece Manzarası' },
+      { src: img('marvista/1.jpg'), alt: 'Mar Vista görünüm 1', label: 'Genel' },
+      { src: img('marvista/2.jpg'), alt: 'Mar Vista görünüm 2', label: 'Detay' },
+      { src: img('marvista/3.jpg'), alt: 'Mar Vista görünüm 3', label: 'Peyzaj' },
     ],
     amenities: [
-      { icon: 'pool',            title: 'Özel Yüzme Havuzu',  description: 'Her villaya özel sonsuzluk havuzu' },
-      { icon: 'spa',             title: 'Spa & Wellness',      description: 'Hammam, sauna ve masaj odaları' },
-      { icon: 'directions_boat', title: 'Marina Erişimi',      description: 'Yalıkavak Marina\'ya özel yat rıhtımı' },
-      { icon: 'local_parking',   title: 'Kapalı Otopark',      description: 'Akıllı güvenlik sistemli kapalı garaj' },
+      { icon: 'apartment', title: 'Geniş Planlar', description: 'Farklı metrekare seçenekleri' },
+      { icon: 'local_parking', title: 'Otopark', description: 'Kapalı ve açık park alanları' },
+      { icon: 'park', title: 'Yeşil Alan', description: 'Açık hava dinlenme bölgeleri' },
+      { icon: 'shield', title: 'Güvenlik', description: 'Kontrollü site girişi' },
     ],
-    floorPlans: [
-      { label: 'Tip A: Bahçe Villası (4+1, 320 m²)' },
-      { label: 'Tip B: Deniz Villası (5+1, 480 m²)' },
-      { label: 'Tip C: Penthouse (6+2, 650 m²)' },
-    ],
+    floorPlans: [{ label: '2+1 — 3+1 daire planları' }],
     proximity: [
-      { label: 'Yalıkavak Marina',  distance: '3 dk',  description: 'Türkiye\'nin en prestijli yat limanı' },
-      { label: 'Bodrum Havalimanı', distance: '45 dk', description: 'Milas-Bodrum Havalimanı' },
-      { label: 'Bodrum Merkez',     distance: '20 dk', description: 'Bodrum çarşısı ve tarihi yarımada' },
-      { label: 'Özel Plaj',         distance: '5 dk',  description: 'Projeye ait özel plaj şeridi' },
+      { label: 'Şehir merkezi', distance: '—', description: 'Ulaşım hatlarına yakın' },
+      { label: 'Sosyal donatılar', distance: 'Site içi', description: 'Çocuk oyun alanı' },
     ],
     featured: true,
   },
   {
-    slug:     'azure-coast-villas',
-    name:     'Azure Coast Villas',
-    location: 'Göltürkbükü, Bodrum',
-    city:     'Bodrum',
-    status:   'TAMAMLANDI',
+    slug: 'oztatli-konutlari',
+    name: 'Öztatlı Konutları',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
     category: 'KONUT',
-    year:     2023,
-    tagline:  'Doğanın Kollarında Lüks Bir Sığınak',
-    description: 'Göltürkbükü koyunun huzurlu sularına nazır, özel plaja sahip lüks villa kompleksi.',
+    year: 2021,
+    tagline: 'Aile odaklı blok düzeni',
+    description: 'Depreme dayanıklı yapı tekniği ile hayata geçirilmiş konut kompleksi.',
     narrative: [
-      'Azure Coast Villas, doğa ile lüksün benzersiz bir sentezini sunar. Bodrum\'un en sakin koylarından birine inşa edilen bu proje, misafirlerine gerçek bir kaçış noktası olmayı hedeflemektedir.',
-      'Her villa, zemin kattan sonsuzluk havuzuna uzanan özel bir deniz manzarasına sahiptir. Organik formlar ve doğal taş kullanımıyla Ege mimarisinin ruhunu yansıtmaktadır.',
+      'Öztatlı Konutları, günlük ihtiyaçlara uygun plan çözümleri ile öne çıkar.',
+      'Ortak kullanım alanları ve cephe düzeni ile sürdürülebilir bir yaşam alanı sunar.',
     ],
-    heroImage:     { src: IMG.azureCoast, alt: 'Azure Coast Villas — Bodrum kıyı beyaz villa' },
+    heroImage: {
+      src: img('tatli/ÖztatlıKonutları.jpeg'),
+      alt: 'Öztatlı Konutları',
+    },
     galleryImages: [
-      { src: IMG.gallery6,  alt: 'Azure Coast havuz alanı',  label: 'Havuz Alanı' },
-      { src: IMG.gallery9,  alt: 'Azure Coast villa detayı', label: 'Villa Detayı' },
-      { src: IMG.gallery3,  alt: 'Azure Coast teras',        label: 'Deniz Terası' },
-      { src: IMG.gallery4,  alt: 'Azure Coast yatak odası',  label: 'Master Suit' },
+      { src: img('tatli/1.jpeg'), alt: 'Öztatlı 1', label: 'Blok' },
+      { src: img('tatli/2.jpeg'), alt: 'Öztatlı 2', label: 'Bahçe' },
+      { src: img('tatli/3.jpeg'), alt: 'Öztatlı 3', label: 'Detay' },
     ],
     amenities: [
-      { icon: 'beach_access',   title: 'Özel Plaj',  description: 'Projeye özel 200m plaj şeridi' },
-      { icon: 'pool',           title: 'Havuz',      description: 'Sonsuzluk havuzu ve çocuk havuzu' },
-      { icon: 'restaurant',     title: 'Restoran',   description: 'Çiftlik ürünleri mutfağı' },
-      { icon: 'fitness_center', title: 'Fitness',    description: 'Açık hava fitness parkuru' },
+      { icon: 'foundation', title: 'Statik Güvenlik', description: 'Güncel yönetmelik uyumu' },
+      { icon: 'water_drop', title: 'Altyapı', description: 'Tam donanımlı tesisat' },
+      { icon: 'balcony', title: 'Balkon', description: 'Geniş kullanım yüzeyleri' },
+      { icon: 'elevator', title: 'Asansör', description: 'Engelsiz erişim' },
     ],
-    floorPlans: [
-      { label: 'Tip A: Bahçe Villası (3+1, 220 m²)' },
-      { label: 'Tip B: Koy Villası (4+1, 320 m²)' },
-    ],
-    proximity: [
-      { label: 'Göltürkbükü',   distance: '2 dk',  description: 'Bodrum\'un gözde eğlence merkezi' },
-      { label: 'Bodrum Merkez', distance: '25 dk', description: 'Tarihi yarımada ve çarşı' },
-      { label: 'Havalimanı',    distance: '50 dk', description: 'Milas-Bodrum Havalimanı' },
-      { label: 'Özel Tekne',    distance: '0 dk',  description: 'Rıhtımdan günlük tekne turları' },
-    ],
-    featured: true,
-  },
-  {
-    slug:     'serene-atoll-residence',
-    name:     'Serene Atoll Residence',
-    location: 'Çeşme, İzmir',
-    city:     'İzmir',
-    status:   'SATIŞTA',
-    category: 'KONUT',
-    year:     2025,
-    tagline:  'Ege Rüzgarıyla Süzülen Bir Yaşam',
-    description: 'Çeşme\'nin kristal sularına sıfır, surf plajına yürüme mesafesinde ultra-lüks rezidans.',
-    narrative: [
-      'Serene Atoll, Çeşme\'nin en değerli noktasında yükselen bir mimarlık şaheseridir. Turkuaz sulara ve kumsal yaşamına olan yakınlığıyla eşsiz bir konum sunar.',
-      'Minimalist tasarım anlayışı ile Ege\'nin açık ve özgür ruhunu yansıtan bu rezidans, yılın tüm mevsimlerinde konuklarına olağanüstü bir yaşam deneyimi vadeder.',
-    ],
-    heroImage:     { src: IMG.sereneAtoll, alt: 'Serene Atoll — Çeşme minimalist kıyı rezidansı' },
-    galleryImages: [
-      { src: IMG.gallery2,  alt: 'Serene Atoll salon',    label: 'Ana Salon' },
-      { src: IMG.gallery1,  alt: 'Serene Atoll teras',    label: 'Teras' },
-      { src: IMG.gallery5,  alt: 'Serene Atoll mutfak',   label: 'Mutfak' },
-      { src: IMG.gallery4,  alt: 'Serene Atoll yatak',    label: 'Yatak Odası' },
-    ],
-    amenities: [
-      { icon: 'surfing',      title: 'Surf Okulu',      description: 'Plaja sıfır surf ve sörf dersleri' },
-      { icon: 'spa',          title: 'Spa Merkezi',     description: 'Deniz manzaralı tam donanımlı spa' },
-      { icon: 'wine_bar',     title: 'Şarap Mahzeni',   description: 'İklimlendirmeli özel şarap mahzeni' },
-      { icon: 'electric_car', title: 'Elektrikli Araç', description: 'Ücretsiz EV şarj istasyonları' },
-    ],
-    floorPlans: [
-      { label: 'Tip A: Deniz Cephesi (2+1, 140 m²)' },
-      { label: 'Tip B: Köşe Rezidans (3+1, 210 m²)' },
-      { label: 'Tip C: Penthouse (4+1, 380 m²)' },
-    ],
-    proximity: [
-      { label: 'Ilıca Plajı',  distance: '5 dk',  description: 'Türkiye\'nin en iyi surf plajı' },
-      { label: 'Çeşme Merkez', distance: '10 dk', description: 'Çarşı, marina ve tarihi kale' },
-      { label: 'İzmir Merkez', distance: '70 dk', description: 'Alsancak ve Kordon sahili' },
-      { label: 'Alaçatı',      distance: '15 dk', description: 'Ünlü taş evler ve butik restoranlar' },
-    ],
+    floorPlans: [{ label: 'Standart kat planları' }],
+    proximity: [{ label: 'Çevre', distance: '—', description: 'Okul ve market erişimi' }],
     featured: false,
   },
   {
-    slug:     'vertex-corporate-tower',
-    name:     'Vertex Corporate Tower',
-    location: 'Levent, İstanbul',
-    city:     'İstanbul',
-    status:   'İNŞAAT SÜRÜYOR',
-    category: 'TİCARİ',
-    year:     2026,
-    tagline:  'İstanbul\'un Siluetine Yeni Bir İmza',
-    description: 'Levent\'in göbeğinde 42 katlı A+ ofis kulesi. 2026 teslim hedefli, LEED Platinum sertifikalı.',
+    slug: 'barroce-evleri',
+    name: 'Barroce Evleri',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2020,
+    tagline: 'Sakin mahalle dokusu',
+    description: 'Düşük katlı yapılanma ile mahalle kültürünü destekleyen proje.',
     narrative: [
-      'Vertex Corporate Tower, EKİNCİ GROUP\'un İstanbul\'daki en büyük ticari yatırımıdır. 42 katlı bu A+ ofis kulesi, İstanbul\'un skyline\'ına kalıcı bir iz bırakmak için tasarlanmıştır.',
-      'LEED Platinum sertifikasyonunu hedefleyen bu proje, enerji verimliliği ve sürdürülebilirlik alanında İstanbul\'un öncü binası olmayı amaçlamaktadır.',
+      'Barroce Evleri, sakin çevre ile uyumlu mimari çizgiyi ön planda tutar.',
+      'Bahçeli kullanım ve cephe malzemeleri ile uzun ömürlü bir yaşam sunar.',
     ],
-    heroImage:     { src: IMG.vertexTower, alt: 'Vertex Corporate Tower — İstanbul modern cam gökdelen' },
+    heroImage: { src: img('baroce/baroce.jpeg'), alt: 'Barroce Evleri' },
     galleryImages: [
-      { src: IMG.gallery7,  alt: 'Vertex Tower şehir manzarası', label: 'Şehir Manzarası' },
-      { src: IMG.gallery8,  alt: 'Vertex Tower lobi',            label: 'Lobi' },
-      { src: IMG.gallery2,  alt: 'Vertex Tower ofis katı',       label: 'Ofis Katı' },
-      { src: IMG.gallery1,  alt: 'Vertex Tower teras',           label: 'Sky Teras' },
+      { src: img('baroce/1.jpeg'), alt: 'Barroce 1', label: 'Villa' },
+      { src: img('baroce/2.jpeg'), alt: 'Barroce 2', label: 'Bahçe' },
+      { src: img('baroce/3.jpeg'), alt: 'Barroce 3', label: 'Cephe' },
     ],
     amenities: [
-      { icon: 'meeting_room',    title: 'Konferans Merkezi', description: '1.200 kişilik konferans salonu' },
-      { icon: 'local_parking',   title: 'Otopark',           description: '600 araçlık kapalı otopark' },
-      { icon: 'restaurant_menu', title: 'Restoran & Cafe',   description: '3 kat yeme-içme alanı' },
-      { icon: 'eco',             title: 'LEED Platinum',     description: 'Yeşil bina sertifikası' },
+      { icon: 'yard', title: 'Özel Bahçe', description: 'Yeşil kullanım alanı' },
+      { icon: 'garage', title: 'Otopark', description: 'Konut başına park yeri' },
+      { icon: 'fence', title: 'Site Çevresi', description: 'Çevre duvarı ve giriş' },
+      { icon: 'wb_sunny', title: 'Doğal Işık', description: 'Geniş pencereler' },
     ],
-    floorPlans: [
-      { label: 'Standart Kat (800-1.200 m²)' },
-      { label: 'Üst Kat Ofisler (1.200-2.400 m²)' },
-      { label: 'Sky Lounge Katlar (3.800 m²)' },
+    floorPlans: [{ label: 'Müstakil ve ikiz villa planları' }],
+    proximity: [{ label: 'Mahalle', distance: '—', description: 'Yaya erişimli sokaklar' }],
+    featured: false,
+  },
+  {
+    slug: 'armada-city',
+    name: 'Armada City',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'SATIŞTA',
+    category: 'KONUT',
+    year: 2025,
+    tagline: 'Modern yaşamın yeni adresi',
+    description: 'Geniş cephe cam kullanımı ve sosyal donatılarla öne çıkan karma yaşam alanı.',
+    narrative: [
+      'Armada City, şehir dokusu içinde güvenli ve prestijli bir yaşam vadeder.',
+      'Sosyal alanlar ve peyzaj ile desteklenen site yaşamı sunulmaktadır.',
     ],
+    heroImage: { src: img('armada/armada.jpeg'), alt: 'Armada City' },
+    galleryImages: [
+      { src: img('armada/1.jpg'), alt: 'Armada 1', label: 'Genel' },
+      { src: img('armada/2.jpg'), alt: 'Armada 2', label: 'Gece' },
+      { src: img('armada/3.jpg'), alt: 'Armada 3', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'fitness_center', title: 'Sosyal Tesis', description: 'Site içi kullanım alanları' },
+      { icon: 'pool', title: 'Havuz', description: 'Yüzme ve dinlenme' },
+      { icon: 'security', title: '7/24 Güvenlik', description: 'Kamera ve güvenlik' },
+      { icon: 'storefront', title: 'Ticari Ünite', description: 'Zemin kat iş yerleri' },
+    ],
+    floorPlans: [{ label: '1+1 — 4+1 seçenekleri' }],
     proximity: [
-      { label: 'Levent Metro',      distance: '2 dk',  description: 'M2 metro hattı direkt bağlantı' },
-      { label: 'İTÜ Maslak',        distance: '10 dk', description: 'İTÜ kampüs ve teknokent' },
-      { label: 'Boğaz Köprüsü',     distance: '15 dk', description: 'Fatih Sultan Mehmet Köprüsü' },
-      { label: 'Havalimanı',         distance: '30 dk', description: 'İstanbul Havalimanı' },
+      { label: 'Ulaşım', distance: 'Yakın', description: 'Ana arter bağlantısı' },
+      { label: 'Alışveriş', distance: '—', description: 'Çevre hizmetler' },
     ],
     featured: true,
   },
   {
-    slug:     'amber-center',
-    name:     'Amber Center',
-    location: 'Ataşehir, İstanbul',
-    city:     'İstanbul',
-    status:   'TAMAMLANDI',
-    category: 'KARMA',
-    year:     2022,
-    tagline:  'Şehrin Kalbinde Yaşam ve İş Bir Arada',
-    description: 'Ataşehir\'in yükselen aksında karma kullanımlı proje: konut, ofis ve AVM bir arada.',
+    slug: 'ekinci-royal-park',
+    name: 'Ekinci Royal Park',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'SATIŞTA',
+    category: 'KONUT',
+    year: 2025,
+    tagline: 'Yeşil ile iç içe yaşam',
+    description: 'Geniş peyzaj ve düzenli blok yerleşimi ile öne çıkan park konseptli proje.',
     narrative: [
-      'Amber Center, modern şehir yaşamının tüm ihtiyaçlarını tek bir adreste buluşturan yenilikçi karma kullanım projesidir.',
-      'İstanbul\'un en dinamik iş ve yaşam merkezlerinden birinde yer alan Amber Center, 1.200 konuta, 35.000 m² ofis alanına ve 220 mağazalı alışveriş merkezine ev sahipliği yapmaktadır.',
+      'Royal Park, yeşil alan odaklı yerleşim planı ile öne çıkar.',
+      'Aileler için güvenli site içi yaşam ve sosyal donatılar sunar.',
     ],
-    heroImage:     { src: IMG.amberCenter, alt: 'Amber Center — karma kullanım yapısı İstanbul' },
+    heroImage: { src: img('royalpark/royal.jpeg'), alt: 'Ekinci Royal Park' },
     galleryImages: [
-      { src: IMG.gallery7,  alt: 'Amber Center şehir manzarası', label: 'Şehir Manzarası' },
-      { src: IMG.gallery8,  alt: 'Amber Center lobi',            label: 'Merkezi Lobi' },
-      { src: IMG.gallery5,  alt: 'Amber Center konut',           label: 'Konut Mutfak' },
-      { src: IMG.gallery4,  alt: 'Amber Center yatak odası',     label: 'Konut Yatak' },
+      { src: img('royalpark/1.jpg'), alt: 'Royal Park 1', label: 'Genel' },
+      { src: img('royalpark/2.jpg'), alt: 'Royal Park 2', label: 'Peyzaj' },
+      { src: img('royalpark/3.jpg'), alt: 'Royal Park 3', label: 'Detay' },
     ],
     amenities: [
-      { icon: 'shopping_bag',    title: '220 Mağaza',     description: 'Ulusal ve uluslararası markalar' },
-      { icon: 'apartment',       title: '1.200 Konut',    description: 'Farklı tipte lüks konut seçenekleri' },
-      { icon: 'business_center', title: '35.000 m² Ofis', description: 'A sınıfı ofis alanları' },
-      { icon: 'school',          title: 'Okul & Kreş',    description: 'İlkokul ve anaokuluna yürüme mesafesi' },
+      { icon: 'park', title: 'Park Alanı', description: 'Geniş yeşil kullanım' },
+      { icon: 'child_care', title: 'Çocuk Oyun', description: 'Güvenli oyun parkuru' },
+      { icon: 'pets', title: 'Yürüyüş', description: 'Açık hava parkuru' },
+      { icon: 'local_cafe', title: 'Ortak Alan', description: 'Sosyal buluşma noktası' },
     ],
-    floorPlans: [
-      { label: 'Konut: 1+1 (75 m²)' },
-      { label: 'Konut: 2+1 (120 m²)' },
-      { label: 'Konut: 3+1 (175 m²)' },
+    floorPlans: [{ label: '3+1 — 4+1 konutlar' }],
+    proximity: [{ label: 'Şehir', distance: '—', description: 'Hızlı erişim' }],
+    featured: true,
+  },
+  {
+    slug: 'saray-2-sitesi',
+    name: 'Saray 2 Sitesi',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2019,
+    tagline: 'İkinci etap ile devam eden kalite',
+    description: 'Saray projelerinin ikinci etabı; güçlendirilmiş sosyal donatılar.',
+    narrative: [
+      'Saray 2, ilk etaptan edinilen deneyimle iyileştirilmiş plan çözümleri sunar.',
+      'Site yaşamını kolaylaştıran ortak alanlar ile tamamlanmıştır.',
     ],
-    proximity: [
-      { label: 'Ataşehir Metro', distance: '3 dk',  description: 'M4 metro hattı' },
-      { label: 'Kadıköy',        distance: '15 dk', description: 'Kadıköy iskelesi ve çarşı' },
-      { label: 'Sabiha Gökçen',  distance: '35 dk', description: 'Sabiha Gökçen Havalimanı' },
-      { label: 'TEM Otoyolu',    distance: '5 dk',  description: 'TEM bağlantı yolu' },
+    heroImage: { src: img('saray2/1.jpg'), alt: 'Saray 2 Sitesi' },
+    galleryImages: [
+      { src: img('saray2/1.jpg'), alt: 'Saray 2 — 1', label: 'Genel' },
+      { src: img('saray2/2.jpg'), alt: 'Saray 2 — 2', label: 'Bahçe' },
+      { src: img('saray2/3.jpg'), alt: 'Saray 2 — 3', label: 'Detay' },
     ],
+    amenities: [
+      { icon: 'apartment', title: 'Modern Planlar', description: 'Geniş odalar' },
+      { icon: 'local_parking', title: 'Kapalı Otopark', description: 'Konut başına park' },
+      { icon: 'terrain', title: 'Peyzaj', description: 'Yeşil düzenek' },
+      { icon: 'groups', title: 'Site Yönetimi', description: 'Profesyonel işletme' },
+    ],
+    floorPlans: [{ label: 'Çok katlı konut planları' }],
+    proximity: [{ label: 'Komşu projeler', distance: '—', description: 'Saray Sitesi ile uyum' }],
+    featured: false,
+  },
+  {
+    slug: 'saray-sitesi',
+    name: 'Saray Sitesi',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2018,
+    tagline: 'Kökleri güçlü site yaşamı',
+    description: 'Ekinci kalitesinin ilk Saray etabı; güvenilir teslim ve işçilik.',
+    narrative: [
+      'Saray Sitesi, bölgede referans gösterilen ilk etap projelerden biridir.',
+      'Sağlam cephe ve kullanışlı daire planları ile öne çıkar.',
+    ],
+    heroImage: { src: img('saray/saray.jpg'), alt: 'Saray Sitesi' },
+    galleryImages: [
+      { src: img('saray/1.jpg'), alt: 'Saray 1', label: 'Genel' },
+      { src: img('saray/2.jpg'), alt: 'Saray 2', label: 'Gece' },
+      { src: img('saray/3.jpg'), alt: 'Saray 3', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'home_work', title: 'Donanım', description: 'Hazır teslim daireler' },
+      { icon: 'construction', title: 'Kalite', description: 'Denetlenen işçilik' },
+      { icon: 'architecture', title: 'Cephe', description: 'Modern görünüm' },
+      { icon: 'hub', title: 'Konum', description: 'Şehir bağlantısı' },
+    ],
+    floorPlans: [{ label: 'Standart daire tipleri' }],
+    proximity: [{ label: 'Çevre', distance: '—', description: 'Günlük ihtiyaçlara yakın' }],
+    featured: false,
+  },
+  {
+    slug: 'ekinci-plaza',
+    name: 'Ekinci Plaza',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'TİCARİ',
+    year: 2021,
+    tagline: 'Şehir ticaretine merkezî adres',
+    description: 'Ofis ve ticari ünitelerin bir arada olduğu çok katlı plaza yapısı.',
+    narrative: [
+      'Ekinci Plaza, ticari vitrin ihtiyaçlarına uygun geniş cephe ve iç mekan çözümleri sunar.',
+      'Ofis katları ve dükkânların uyumlu yerleşimi ile iş dünyasına hitap eder.',
+    ],
+    heroImage: { src: img('plaza/2.jpg'), alt: 'Ekinci Plaza' },
+    galleryImages: [
+      { src: img('plaza/1.jpg'), alt: 'Plaza 1', label: 'Dış cephe' },
+      { src: img('plaza/2.jpg'), alt: 'Plaza 2', label: 'Genel' },
+      { src: img('plaza/3.jpg'), alt: 'Plaza 3', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'elevator', title: 'Asansör', description: 'Yüksek kat taşıma' },
+      { icon: 'meeting_room', title: 'Ofis Katları', description: 'Esnek planlar' },
+      { icon: 'storefront', title: 'Dükkanlar', description: 'Caddeye cephe' },
+      { icon: 'bolt', title: 'Altyapı', description: 'Güç ve iletişim hatları' },
+    ],
+    floorPlans: [{ label: 'Ofis ve ticari birim planları' }],
+    proximity: [{ label: 'Şehir merkezi', distance: 'Merkezî', description: 'Yoğun ticari bölge' }],
+    featured: true,
+  },
+  {
+    slug: 'ekinci-residence',
+    name: 'Ekinci Residence',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2022,
+    tagline: 'Konforlu rezidans yaşamı',
+    description: 'Üst segment konut ve cephe çözümleri ile rezidans konsepti.',
+    narrative: [
+      'Ekinci Residence, güvenlik ve konfor odaklı rezidans yaşamı sunar.',
+      'Geniş cam yüzeyleri ve sundurmalar ile modern yaşam alanı oluşturulmuştur.',
+    ],
+    heroImage: { src: img('plaza/plaza.jpeg'), alt: 'Ekinci Residence' },
+    galleryImages: [
+      { src: img('plaza/1.jpg'), alt: 'Residence 1', label: 'Genel' },
+      { src: img('plaza/2.jpg'), alt: 'Residence 2', label: 'Cephe' },
+      { src: img('plaza/3.jpg'), alt: 'Residence 3', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'door_front', title: 'Lobi', description: 'Karşılama alanı' },
+      { icon: 'videocam', title: 'Güvenlik', description: 'Kapalı devre sistem' },
+      { icon: 'balcony', title: 'Teras', description: 'Geniş balkon kullanımı' },
+      { icon: 'ac_unit', title: 'İklimlendirme', description: 'Modern HVAC altyapısı' },
+    ],
+    floorPlans: [{ label: 'Üst segment daire planları' }],
+    proximity: [{ label: 'Kent içi', distance: '—', description: 'Ulaşım avantajı' }],
+    featured: false,
+  },
+  {
+    slug: 'prestij-gold',
+    name: 'Prestij Gold',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2020,
+    tagline: 'Prestijli blok düzeni',
+    description: 'Üç boyutlu cephe hareketi ve gold detaylarla öne çıkan konut projesi.',
+    narrative: [
+      'Prestij Gold, görünürlüğü yüksek cephe tasarımı ile dikkat çeker.',
+      'Dağıtılmış ortak alanlar ile günlük kullanım kolaylığı sağlanmıştır.',
+    ],
+    heroImage: { src: img('prestij/prestij3.jpg'), alt: 'Prestij Gold' },
+    galleryImages: [
+      { src: img('prestij/prestij1.jpg'), alt: 'Prestij 1', label: 'Genel' },
+      { src: img('prestij/prestij2.jpg'), alt: 'Prestij 2', label: 'Gece' },
+      { src: img('prestij/prestij3.jpg'), alt: 'Prestij 3', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'star', title: 'Prestij', description: 'Üst segment malzeme' },
+      { icon: 'landscape', title: 'Peyzaj', description: 'Düzenli yeşil alan' },
+      { icon: 'nightlight', title: 'Aydınlatma', description: 'Cephe ve bahçe ışığı' },
+      { icon: 'roofing', title: 'Çatı', description: 'Su yalıtımı ve izolasyon' },
+    ],
+    floorPlans: [{ label: 'Çok katlı konut planları' }],
+    proximity: [{ label: 'Mahalle', distance: '—', description: 'Site içi güvenlik' }],
+    featured: false,
+  },
+  {
+    slug: 'prestij-park',
+    name: 'Prestij Park',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2021,
+    tagline: 'Yeşil odaklı Prestij serisi',
+    description: 'Park Prestij çizgisinin doğayla harmanlanmış örneği.',
+    narrative: [
+      'Prestij Park, yeşil alan oranı ile öne çıkar.',
+      'Konforlu daire planları ve dış mekan kullanımı dengelenmiştir.',
+    ],
+    heroImage: { src: img('park/park3.jpg'), alt: 'Prestij Park' },
+    galleryImages: [
+      { src: img('park/park3.jpg'), alt: 'Park 3', label: 'Genel' },
+      { src: img('park/park1.jpg'), alt: 'Park 1', label: 'Yeşil alan' },
+      { src: img('park/park.jpg'), alt: 'Park', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'forest', title: 'Yeşil Alan', description: 'Geniş peyzaj' },
+      { icon: 'deck', title: 'Parkuru', description: 'Yürüyüş yolu' },
+      { icon: 'wb_cloudy', title: 'Havalandırma', description: 'Geniş cephe aralığı' },
+      { icon: 'eco', title: 'Doğal Dokunuş', description: 'Bitki seçimi' },
+    ],
+    floorPlans: [{ label: 'Standart residence planları' }],
+    proximity: [{ label: 'Şehir', distance: '—', description: 'Yeşil koridor' }],
+    featured: false,
+  },
+  {
+    slug: 'newbahar',
+    name: 'Newbahar',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'İNŞAAT SÜRÜYOR',
+    category: 'KONUT',
+    year: 2026,
+    tagline: 'Yeni dönem konut anlayışı',
+    description: 'Güncel yalıtım ve cephe sistemleri ile yükselen yeni nesil proje.',
+    narrative: [
+      'Newbahar, güncel enerji verimliliği yaklaşımıyla tasarlanmaktadır.',
+      'İnşaat süreci şeffaf planlama ve güvenli şantiye disiplini ile yürütülmektedir.',
+    ],
+    heroImage: { src: img('new/new1.jpg'), alt: 'Newbahar' },
+    galleryImages: [
+      { src: img('new/new1.jpg'), alt: 'Newbahar 1', label: 'Şantiye / genel' },
+      { src: img('new/new.jpg'), alt: 'Newbahar 2', label: 'İlerleme' },
+      { src: img('new/new3.jpg'), alt: 'Newbahar 3', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'engineering', title: 'Şantiye Takibi', description: 'Periyodik raporlama' },
+      { icon: 'energy_savings_leaf', title: 'Yalıtım', description: 'Isı köprüsü kontrolü' },
+      { icon: 'precision_manufacturing', title: 'Kalite', description: 'Malzeme onayı' },
+      { icon: 'schedule', title: 'Teslim Planı', description: 'Net takvim' },
+    ],
+    floorPlans: [{ label: 'Ön talebe göre plan seçenekleri' }],
+    proximity: [{ label: 'Bölge', distance: '—', description: 'Yeni yerleşim aksı' }],
     featured: false,
   },
 ]
 
-export function getProjectBySlug(slug: string): Project | undefined {
+export function getProjectBySlug(slug: string) {
   return PROJECTS.find(p => p.slug === slug)
 }
 
-export function getFeaturedProjects(): Project[] {
+export function getFeaturedProjects(): typeof PROJECTS {
   return PROJECTS.filter(p => p.featured)
 }
 
-export function getProjectsByCategory(cat: ProjectCategory): Project[] {
+export function getProjectsByCategory(cat: Project['category']) {
   return PROJECTS.filter(p => p.category === cat)
 }
 
-export function getProjectsByStatus(status: ProjectStatus): Project[] {
+export function getProjectsByStatus(status: Project['status']) {
   return PROJECTS.filter(p => p.status === status)
 }
-
-export { IMG as PROJECT_IMAGES }

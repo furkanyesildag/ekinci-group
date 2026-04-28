@@ -6,7 +6,7 @@ import MapSection from '@/components/iletisim/MapSection'
 
 export const metadata: Metadata = {
   title: 'İletişim',
-  description: 'İstanbul Levent, Bodrum ve Ankara ofislerimize ulaşın. 7/24 satış danışmanlarımız hizmetinizde.',
+  description: 'Siirt merkez ofis ve Türkiye geneli projeler için iletişim. Ekinci Group ile görüşün.',
 }
 
 export default function IletisimPage() {

@@ -16,7 +16,7 @@ export default function OfficeCards() {
           )}
           <div className="p-7">
             <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary font-body mb-3">Genel Merkez</p>
-            <h3 className="font-headline text-xl font-bold text-on-surface mb-4">İstanbul Levent</h3>
+            <h3 className="font-headline text-xl font-bold text-on-surface mb-4">Siirt Merkez</h3>
             <div className="flex flex-col gap-3">
               <p className="text-sm text-on-surface-variant font-body leading-relaxed whitespace-pre-line">{OFFICES[0].address}</p>
               <a href={`tel:${OFFICES[0].phone}`}
@@ -42,7 +42,7 @@ export default function OfficeCards() {
           )}
           <div className="p-7">
             <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary font-body mb-3">Satış Ofisleri</p>
-            <h3 className="font-headline text-xl font-bold text-on-surface mb-4">3 Şehirde Hizmet</h3>
+            <h3 className="font-headline text-xl font-bold text-on-surface mb-4">Türkiye geneli</h3>
             <div className="flex flex-col gap-2">
               {SALES_OFFICES.map(office => (
                 <details key={office.city} className="group">

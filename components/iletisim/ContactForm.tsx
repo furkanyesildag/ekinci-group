@@ -2,12 +2,14 @@
 
 import Image from 'next/image'
 import { useState } from 'react'
+import { PROJECTS } from '@/lib/projects'
+import { publicImage } from '@/lib/publicImage'
 import SectionLabel from '@/components/ui/SectionLabel'
 import MaterialIcon from '@/components/ui/MaterialIcon'
 
-const FORM_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuCsChI7PfJ0IHSVBK76abu1T-qqCFrZL67gC67WCmaP_7NtD5eyR7WGO0SUFx6IatjGDv5JuKDSI09jrVoy-N693YxLUdMR_CUr0VgzY09UgtKgyn2UCR5QKfzAtykjcw8BXy6aODNSCnk4URBVMubKIAfDJ_8HtawUzbywW7BbkLhUetm1BxdZTuuW1egc-P2WWRXxeoGvnRyDDI9Fl2fAMs5k8KS9uZRUSnu-8_RjvmnvF2lcv2XVqG3eaLit4IRb9tkactujFsQf'
+const FORM_IMG = publicImage('plaza/plaza.jpeg')
 
-const PROJECTS_LIST = ['Elysium Heights', 'Azure Coast Villas', 'Serene Atoll Residence', 'Vertex Corporate Tower', 'Amber Center', 'Diğer / Genel Bilgi']
+const PROJECTS_LIST = [...PROJECTS.map(p => p.name), 'Diğer / Genel bilgi']
 
 export default function ContactForm() {
   const [submitted, setSubmitted] = useState(false)

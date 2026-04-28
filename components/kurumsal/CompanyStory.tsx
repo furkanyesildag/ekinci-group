@@ -1,12 +1,13 @@
 import Image from 'next/image'
 import SectionLabel from '@/components/ui/SectionLabel'
+import { publicImage } from '@/lib/publicImage'
 
-const STORY_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuB-p_TdNSXU_Q-G8cZoOebv6AsWeuIB33tK32s99uJJV9vL1lyNz_LwgIplatu-6rO_Lx3dMogdF2LPhuVxqJ_4g3z43cZDSFsNwU2nOidAeZGfv00gvVkaCgz2KF_DdByIFWPFsL7Z6j1muSeDUIRbQbKbmYs8d41QvBJarTH6zvOc8-GkP8NScuNeRUPhc1Yt43VlImWmUcvx9he62HrqACD2XdRpzNOvl-85r8Kvane8FX5Pl0N7b2C9mHgqff-dttQwzeJd5cN5'
+const STORY_IMG = publicImage('ekinci.jpg')
 
 const miniStats = [
-  { value: '120+', label: 'Tamamlanan Proje' },
-  { value: '12',   label: 'Ulusal & Uluslararası Ödül' },
-  { value: '50+',  label: 'Yıllık Sektör Deneyimi' },
+  { value: '50+', label: 'Tamamlanan Proje' },
+  { value: '15+', label: 'İlde Faaliyet' },
+  { value: '55+', label: 'Yıllık Deneyim' },
 ]
 
 export default function CompanyStory() {
@@ -22,10 +23,10 @@ export default function CompanyStory() {
             vizyon hikayesi
           </h2>
           <p className="text-base text-on-surface-variant font-body leading-relaxed mb-5">
-            EKİNCİ GROUP, 1974 yılında İstanbul&apos;da küçük bir müteahhitlik firması olarak kurulmuştur. Kuruluşumuzdan bu yana güven, estetik ve kalite ilkeleri, her projemizin temel taşları olmaya devam etmektedir.
+            Ekinci Şirketler Grubu, Cuma Ekinci tarafından 1968 yılında kurulmuş köklü bir aile şirketidir. Türkiye&apos;nin çeşitli illerinde inşaat faaliyetleri yürütür; geleneksel güven ile modern projeleri birleştirmeyi ilke edinmiştir.
           </p>
           <p className="text-base text-on-surface-variant font-body leading-relaxed mb-10">
-            Onlarca yıl boyunca edindiğimiz tecrübe, binlerce aileye teslim ettiğimiz yaşam alanları ve kazandığımız uluslararası ödüller, bugün Türkiye&apos;nin en prestijli inşaat şirketlerinden biri olmamızı sağlamıştır.
+            Konut projelerinden ticari yapılara ve kentsel dönüşüme kadar geniş bir yelpazede, müşteri memnuniyetini ve zamanında teslimi önceliklendiriyoruz.
           </p>
 
           {/* Mini stats */}

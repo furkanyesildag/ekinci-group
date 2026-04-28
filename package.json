@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "sync:assets": "rsync -a ../ekincigroup_images/ public/"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.5.11",

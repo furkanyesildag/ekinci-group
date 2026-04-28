@@ -5,8 +5,8 @@ import SectionLabel from '@/components/ui/SectionLabel'
 import MaterialIcon from '@/components/ui/MaterialIcon'
 
 const features = [
-  { icon: 'verified', label: 'Sertifikalı Kalite', desc: 'ISO 9001 & TSE standartları' },
-  { icon: 'trending_up', label: 'Değer Artışı', desc: 'Ortalama %40 yatırım getirisi' },
+  { icon: 'verified', label: 'Kalite odaklı işçilik', desc: 'Şantiye ve teslim süreçlerinde kontrollü üretim' },
+  { icon: 'trending_up', label: 'Güvenilir teslim', desc: 'Planlı iş programı ve şeffaf iletişim' },
 ]
 
 export default function VisionSection() {
@@ -39,10 +39,10 @@ export default function VisionSection() {
             inşa ediyoruz
           </h2>
           <p className="text-base text-on-surface-variant font-body leading-relaxed mb-4">
-            1974&apos;ten bu yana Türkiye&apos;nin önde gelen inşaat firmalarından biri olarak, her projemizde mühendisliğin ve estetiğin en yüksek standartlarını bir araya getiriyoruz.
+            1968&apos;den bu yana Türkiye&apos;nin dört bir yanında konut, ticari yapı ve taahhüt işleri üreten Ekinci Şirketler Grubu olarak güven ve sürdürülebilir kaliteyi önceliklendiriyoruz.
           </p>
           <p className="text-base text-on-surface-variant font-body leading-relaxed mb-10">
-            İstanbul, Bodrum ve Ankara&apos;da hayata geçirdiğimiz projeler, sakinlerine yalnızca bir yaşam alanı değil; geleceğe sürdürülebilir bir yatırım sunuyor.
+            Siirt merkezli operasyonumuzla Türkiye genelinde tamamladığımız projeler, gerek konut gerek ticari alanda güvenilir teslim ve zamanında sonuç odaklıdır.
           </p>
 
           {/* Features */}

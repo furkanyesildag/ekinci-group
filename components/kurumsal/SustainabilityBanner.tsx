@@ -1,8 +1,9 @@
 import Image from 'next/image'
 import Link from 'next/link'
+import { publicImage } from '@/lib/publicImage'
 import MaterialIcon from '@/components/ui/MaterialIcon'
 
-const SUST_IMG = 'https://lh3.googleusercontent.com/aida-public/AB6AXuB7aqC-0N4mHT7fwTWp7Lm9eSVxw3KAiY5RcG2FLkbzd2GJp8GgvBRCnMYvV8eOg6rclZ9JDh7e5ZwF0fLM1UnTuxmgIutkQPcCKJSlw7hSa113feHQV2Qfyr00IVx7qGBpeD12Qr4lAyNsLhvyUZYtRyMpzD-TAzVSP5ypDEFmcxYA47mBdIxdYIDppfaULrxJGssOtAJYu4OqKnfHztbvOYQJMuFv9c_pp7qq_6igtBWPbB9lMxj5EX17StV2ndGhhMtnkiSzhbft'
+const SUST_IMG = publicImage('park/park1.jpg')
 
 export default function SustainabilityBanner() {
   return (

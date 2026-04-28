@@ -25,12 +25,16 @@ export const metadata: Metadata = {
     default: 'EKİNCİ GROUP İNŞAAT | Geleceğin Yaşam Alanlarını İnşa Ediyoruz',
     template: '%s | EKİNCİ GROUP İNŞAAT',
   },
-  description: '50 yılı aşkın tecrübemizle İstanbul, Bodrum ve Ankara\'da lüks konut ve ticari projeler geliştiriyoruz.',
-  keywords: ['inşaat', 'lüks konut', 'villa', 'bodrum', 'istanbul', 'gayrimenkul', 'EKİNCİ GROUP'],
+  description: '1968\'den beri Türkiye\'de konut, ticari yapılar ve kentsel dönüşüm projeleri. Siirt merkezli Ekinci Şirketler Grubu.',
+  keywords: ['inşaat', 'konut', 'Ekinci Group', 'Siirt', 'gayrimenkul', 'kentsel dönüşüm', 'EKİNCİ GROUP'],
   openGraph: {
     siteName: 'EKİNCİ GROUP İNŞAAT',
     locale: 'tr_TR',
     type: 'website',
+  },
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
   },
 }
 

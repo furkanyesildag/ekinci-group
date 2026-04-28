@@ -21,7 +21,7 @@ export default function Footer() {
               />
             </Link>
             <p className="text-sm text-white/50 font-body leading-relaxed max-w-xs mb-6">
-              50 yılı aşkın tecrübemizle Türkiye&apos;nin dört bir yanında lüks konut ve ticari projeler geliştiriyoruz.
+              1968&apos;den beri Türkiye&apos;nin çeşitli illerinde konut, ticari yapılar ve taahhüt işleriyle güvenilir teslim.
             </p>
             <div className="flex flex-col gap-3">
               <a href={`tel:${COMPANY.phone}`} className="flex items-center gap-2 text-sm text-white/50 hover:text-primary-fixed transition-colors">

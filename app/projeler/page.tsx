@@ -9,7 +9,8 @@ import SectionLabel from '@/components/ui/SectionLabel'
 
 export const metadata: Metadata = {
   title: 'Projelerimiz',
-  description: 'EKİNCİ GROUP\'un tamamlanan, devam eden ve satıştaki lüks konut ile ticari projelerini keşfedin.',
+  description:
+    'Ekinci Group’un tamamlanan, devam eden ve satıştaki konut ile ticari projeleri. Siirt ve Türkiye geneli.',
 }
 
 interface Props {
