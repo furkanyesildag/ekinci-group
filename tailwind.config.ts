@@ -1,19 +1,103 @@
-import type { Config } from "tailwindcss";
+import type { Config } from 'tailwindcss'
 
 const config: Config = {
   content: [
-    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
-    "./components/**/*.{js,ts,jsx,tsx,mdx}",
-    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    './app/**/*.{ts,tsx}',
+    './components/**/*.{ts,tsx}',
   ],
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        'primary':                   '#795927',
+        'primary-dim':               '#6c4e1c',
+        'primary-fixed':             '#fbd092',
+        'primary-fixed-dim':         '#ecc386',
+        'primary-container':         '#fbd092',
+        'on-primary':                '#fff8f2',
+        'on-primary-fixed':          '#4d3303',
+        'on-primary-fixed-variant':  '#6d4f1d',
+        'on-primary-container':      '#624614',
+        'inverse-primary':           '#fbd092',
+        'surface':                   '#faf9f6',
+        'surface-bright':            '#faf9f6',
+        'surface-dim':               '#d9dbd6',
+        'surface-variant':           '#e1e3de',
+        'surface-container-lowest':  '#ffffff',
+        'surface-container-low':     '#f4f4f0',
+        'surface-container':         '#eeeeea',
+        'surface-container-high':    '#e7e9e4',
+        'surface-container-highest': '#e1e3de',
+        'surface-tint':              '#795927',
+        'on-surface':                '#303330',
+        'on-surface-variant':        '#5d605c',
+        'inverse-surface':           '#0d0f0d',
+        'inverse-on-surface':        '#9d9d9a',
+        'secondary':                 '#5f5f5f',
+        'secondary-dim':             '#535353',
+        'secondary-container':       '#e4e2e1',
+        'secondary-fixed':           '#e4e2e1',
+        'on-secondary':              '#fbf8f8',
+        'on-secondary-container':    '#525251',
+        'on-secondary-fixed':        '#3f3f3f',
+        'tertiary':                  '#5e5f60',
+        'tertiary-container':        '#ffffff',
+        'on-tertiary':               '#f9f9f9',
+        'on-tertiary-container':     '#616263',
+        'outline':                   '#797b78',
+        'outline-variant':           '#b0b3ae',
+        'background':                '#faf9f6',
+        'on-background':             '#303330',
+        'error':                     '#a73b21',
+        'error-container':           '#fd795a',
+        'on-error':                  '#fff7f6',
+        'gold-accent':               '#CAA369',
+      },
+      fontFamily: {
+        headline: ['"Noto Serif"', 'serif'],
+        serif:    ['"Noto Serif"', 'serif'],
+        body:     ['Manrope', 'sans-serif'],
+        sans:     ['Manrope', 'sans-serif'],
+      },
+      borderRadius: {
+        DEFAULT: '0.25rem',
+        sm:      '0.125rem',
+        md:      '0.375rem',
+        lg:      '0.5rem',
+        xl:      '0.75rem',
+        '2xl':   '1rem',
+        '3xl':   '1.5rem',
+        '4xl':   '2rem',
+        '5xl':   '2.5rem',
+        full:    '9999px',
+      },
+      animation: {
+        'slider-fade': 'sliderFade 15s infinite',
+        'ping-slow':   'ping 2.5s cubic-bezier(0,0,0.2,1) infinite',
+        'fade-in-up':  'fadeInUp 0.6s ease forwards',
+      },
+      keyframes: {
+        sliderFade: {
+          '0%, 100%':    { opacity: '0', transform: 'scale(1.05)' },
+          '10%, 33.33%': { opacity: '1', transform: 'scale(1)' },
+          '43.33%':      { opacity: '0' },
+        },
+        fadeInUp: {
+          from: { opacity: '0', transform: 'translateY(20px)' },
+          to:   { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      boxShadow: {
+        'ambient':    '0px 20px 40px rgba(48,51,48,0.06)',
+        'ambient-md': '0px 20px 40px rgba(48,51,48,0.12)',
+        'ambient-xl': '0px 20px 40px rgba(48,51,48,0.20)',
+        'primary':    '0 10px 30px rgba(121,89,39,0.20)',
+        'primary-lg': '0 20px 50px rgba(121,89,39,0.30)',
       },
     },
   },
-  plugins: [],
-};
-export default config;
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
+}
+
+export default config
