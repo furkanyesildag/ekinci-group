@@ -2,11 +2,11 @@ import { COMPANY } from '@/lib/constants'
 
 export default function WhatsAppFAB() {
   return (
-    <div className="fixed bottom-8 right-6 z-50 flex flex-col gap-3 items-end">
-      {/* Beni Arayın */}
+    <div className="fixed bottom-6 right-4 sm:right-6 z-50 flex flex-col gap-3 items-end">
+      {/* Beni Arayın — mobilde gizli, kalabalığı azaltmak için sadece sm+ */}
       <a
         href={`tel:${COMPANY.phone}`}
-        className="flex items-center gap-2 bg-inverse-surface text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-ambient-xl hover:bg-[#1a1c1a] transition-all duration-300 hover:-translate-y-0.5"
+        className="hidden sm:flex items-center gap-2 bg-inverse-surface text-white text-xs font-semibold px-4 py-2.5 rounded-full shadow-ambient-xl hover:bg-[#1a1c1a] transition-all duration-300 hover:-translate-y-0.5"
       >
         <span className="material-symbols-outlined text-[18px]" style={{ fontVariationSettings: "'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 18" }}>phone_callback</span>
         Beni Arayın
@@ -16,7 +16,7 @@ export default function WhatsAppFAB() {
         href={`https://wa.me/${COMPANY.whatsapp}`}
         target="_blank"
         rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full flex items-center justify-center shadow-ambient-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5"
+        className="w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center shadow-ambient-xl transition-all duration-300 hover:scale-110 hover:-translate-y-0.5"
         style={{ backgroundColor: '#25D366' }}
         aria-label="WhatsApp ile iletişim"
       >

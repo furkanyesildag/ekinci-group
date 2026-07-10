@@ -84,7 +84,7 @@ export default function ChatWidget() {
         }`}
         style={{
           bottom: '5rem',
-          maxHeight: 'calc(100vh - 7rem)',
+          maxHeight: 'calc(100dvh - 7rem)',
           transformOrigin: 'bottom left',
         }}
       >
@@ -202,13 +202,13 @@ export default function ChatWidget() {
         </div>
       </div>
 
-      {/* FAB butonu */}
+      {/* FAB butonu — mobilde sade yuvarlak ikon, sm+ ekranda etiketli pill */}
       <button
         onClick={() => setOpen(v => !v)}
-        className={`fixed bottom-6 left-4 sm:left-6 z-[60] flex items-center gap-2.5 shadow-xl transition-all duration-300 ${
+        className={`fixed bottom-6 left-4 sm:left-6 z-[60] flex items-center justify-center gap-2.5 shadow-lg transition-all duration-300 ${
           open
-            ? 'bg-inverse-surface text-white w-12 h-12 rounded-2xl justify-center'
-            : 'bg-primary text-on-primary px-4 h-12 rounded-2xl hover:bg-primary-dim hover:scale-105'
+            ? 'h-12 w-12 rounded-2xl bg-inverse-surface text-white'
+            : 'h-12 w-12 rounded-full bg-primary text-on-primary hover:bg-primary-dim hover:scale-105 sm:w-auto sm:rounded-2xl sm:px-4'
         }`}
         aria-label="Ekinci Asistan"
       >
@@ -217,12 +217,12 @@ export default function ChatWidget() {
         ) : (
           <>
             <ChatIcon />
-            <span className="font-body font-semibold text-sm whitespace-nowrap">Asistan</span>
+            <span className="hidden sm:inline font-body font-semibold text-sm whitespace-nowrap">Asistan</span>
           </>
         )}
         {/* Canlı nokta */}
         {!open && (
-          <span className="absolute -top-1 -right-1 w-3 h-3 rounded-full bg-[#4ade80] border-2 border-surface" />
+          <span className="absolute -top-0.5 -right-0.5 w-2.5 h-2.5 rounded-full bg-[#4ade80] border-2 border-surface" />
         )}
       </button>
     </>
