@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=block');
 
 @tailwind base;
 @tailwind components;
@@ -129,6 +129,11 @@
   to { --bb-angle: 360deg; }
 }
 
+/* ── Spotlight: yalnızca hover destekli cihazlarda görünsün (mobilde atıl) ── */
+@media (hover: hover) and (pointer: fine) {
+  .spotlight-host:hover .spotlight-glow { opacity: 1; }
+}
+
 /* ── Aurora yumuşak parıltı ── */
 @keyframes auroraFloat {
   0%, 100% { transform: translate(0, 0) scale(1); }
@@ -139,9 +144,26 @@
   animation: auroraFloat 16s ease-in-out infinite;
   will-change: transform;
 }
+/* Mobilde aurora animasyonu kapalı — pil ve akıcılık için durağan */
+@media (max-width: 768px) {
+  .aurora-blob { animation: none; }
+}
 
 @keyframes goldPan {
   to { background-position: 200% center; }
+}
+
+/* ── Hero girişi: saf CSS (JS/hidrasyondan bağımsız, mobilde güvenli) ── */
+@keyframes heroIn {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-in {
+  opacity: 0;
+  animation: heroIn 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-in { opacity: 1; animation: none; transform: none; }
 }
 
 /* ── Yumuşak yukarı kayma (framer olmadan) ── */

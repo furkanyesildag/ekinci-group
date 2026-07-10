@@ -4,21 +4,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { motion, type Variants } from 'framer-motion'
 import { getHomeHeroSliderProjects } from '@/lib/projects'
 import Badge from '@/components/ui/Badge'
 import MaterialIcon from '@/components/ui/MaterialIcon'
 import ShimmerButton from '@/components/ui/motion/ShimmerButton'
 import Magnetic from '@/components/ui/motion/Magnetic'
-
-const heroContainer: Variants = {
-  hidden: {},
-  show: { transition: { staggerChildren: 0.13, delayChildren: 0.15 } },
-}
-const heroItem: Variants = {
-  hidden: { opacity: 0, y: 26, filter: 'blur(10px)' },
-  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
-}
 
 const SLIDES = getHomeHeroSliderProjects()
 
@@ -145,27 +135,22 @@ export default function HeroSlider() {
       <div className="absolute inset-0 bg-gradient-to-b from-on-surface/55 via-on-surface/20 to-on-surface/65 z-10 pointer-events-none" />
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none" />
 
-      {/* ── ANA İÇERİK ── */}
-      <motion.div
-        variants={heroContainer}
-        initial="hidden"
-        animate="show"
-        className="relative z-20 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pointer-events-none"
-      >
-        <motion.p variants={heroItem} className="flex items-center gap-2 text-[11px] sm:text-[15px] font-bold tracking-[0.25em] text-primary-fixed/80 font-body mb-5">
+      {/* ── ANA İÇERİK — saf CSS giriş (mobilde güvenli, JS beklemez) ── */}
+      <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pointer-events-none">
+        <p className="hero-in flex items-center gap-2 text-[11px] sm:text-[15px] font-bold tracking-[0.25em] text-primary-fixed/80 font-body mb-5" style={{ animationDelay: '0.05s' }}>
           <span className="hidden sm:inline h-px w-8 bg-primary-fixed/50" />
           EST. 1968 · İSTANBUL · ANKARA · İZMİR · SİİRT
           <span className="hidden sm:inline h-px w-8 bg-primary-fixed/50" />
-        </motion.p>
-        <motion.h1 variants={heroItem} className="font-headline text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tighter leading-[1.05] max-w-5xl mb-5 text-balance">
+        </p>
+        <h1 className="hero-in font-headline text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tighter leading-[1.05] max-w-5xl mb-5 text-balance" style={{ animationDelay: '0.18s' }}>
           Yarının Yaşam<br />
           <em className="not-italic text-gradient-gold">Standartlarını</em><br />
           Bugünden İnşa Ediyoruz
-        </motion.h1>
-        <motion.p variants={heroItem} className="text-sm md:text-lg text-white/70 font-body max-w-xl mb-8 leading-relaxed px-2 sm:px-0">
+        </h1>
+        <p className="hero-in text-sm md:text-lg text-white/70 font-body max-w-xl mb-8 leading-relaxed px-2 sm:px-0" style={{ animationDelay: '0.32s' }}>
           Yarım asırdan fazla tecrübe; konut, ticari yapılar ve kentsel dönüşümde güvenilir teslim.
-        </motion.p>
-        <motion.div variants={heroItem} className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center pointer-events-auto w-full sm:w-auto px-4 sm:px-0">
+        </p>
+        <div className="hero-in flex flex-col sm:flex-row gap-3 sm:gap-4 items-center pointer-events-auto w-full sm:w-auto px-4 sm:px-0" style={{ animationDelay: '0.45s' }}>
           <Magnetic className="w-full sm:w-auto">
             <ShimmerButton href="/projeler" className="w-full sm:w-auto">
               <MaterialIcon icon="apartment" size={18} className="text-primary-fixed" />
@@ -178,8 +163,8 @@ export default function HeroSlider() {
               İletişime Geç
             </Link>
           </Magnetic>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
 
       {/* ── AKTİF PROJE KARTI (sol alt) ── */}
       <div className="absolute left-4 lg:left-10 bottom-24 z-20 pointer-events-auto hidden sm:block">

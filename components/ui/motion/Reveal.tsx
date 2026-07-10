@@ -18,8 +18,6 @@ interface Props {
   distance?: number
   /** Bir kere mi oynasın (varsayılan) yoksa her görünümde mi */
   once?: boolean
-  /** Blur girişi */
-  blur?: boolean
   as?: 'div' | 'section' | 'span' | 'li' | 'article'
 }
 
@@ -41,7 +39,6 @@ export default function Reveal({
   duration = 0.7,
   distance = 28,
   once = true,
-  blur = true,
   as = 'div',
 }: Props) {
   const reduce = useReducedMotion()
@@ -52,17 +49,16 @@ export default function Reveal({
     return <Tag className={className}>{children}</Tag>
   }
 
+  // Not: blur filtresi mobilde jank yarattığı için kaldırıldı — sadece opacity + translate.
   const variants: Variants = {
     hidden: {
       opacity: 0,
       ...offset(direction, distance),
-      filter: blur ? 'blur(8px)' : 'blur(0px)',
     },
     show: {
       opacity: 1,
       x: 0,
       y: 0,
-      filter: 'blur(0px)',
       transition: {
         duration,
         delay,
@@ -77,7 +73,7 @@ export default function Reveal({
       variants={variants}
       initial="hidden"
       whileInView="show"
-      viewport={{ once, amount: 0.25, margin: '0px 0px -80px 0px' }}
+      viewport={{ once, amount: 0.15 }}
     >
       {children}
     </MotionTag>

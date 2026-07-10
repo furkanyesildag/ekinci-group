@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState, type ReactNode, type MouseEvent } from 'react'
+import { useRef, type ReactNode, type MouseEvent } from 'react'
 
 interface Props {
   children: ReactNode
@@ -11,37 +11,37 @@ interface Props {
   radius?: number
 }
 
-/** İmleci takip eden yumuşak radyal parıltı — kart içine sarılır. */
+/**
+ * İmleci takip eden yumuşak radyal parıltı.
+ * Performans: setState yok — konum doğrudan CSS değişkenine yazılır (re-render yok).
+ * Yalnızca hover destekli (masaüstü) cihazlarda görünür; dokunmatikte tamamen atıl.
+ */
 export default function SpotlightCard({
   children,
   className = '',
-  glow = 'rgba(202,163,105,0.25)',
-  radius = 360,
+  glow = 'rgba(202,163,105,0.22)',
+  radius = 340,
 }: Props) {
-  const ref = useRef<HTMLDivElement>(null)
-  const [pos, setPos] = useState({ x: 0, y: 0 })
-  const [active, setActive] = useState(false)
+  const glowRef = useRef<HTMLDivElement>(null)
 
   const onMove = (e: MouseEvent<HTMLDivElement>) => {
-    const el = ref.current
+    const el = glowRef.current
     if (!el) return
-    const rect = el.getBoundingClientRect()
-    setPos({ x: e.clientX - rect.left, y: e.clientY - rect.top })
+    const rect = e.currentTarget.getBoundingClientRect()
+    el.style.setProperty('--mx', `${e.clientX - rect.left}px`)
+    el.style.setProperty('--my', `${e.clientY - rect.top}px`)
   }
 
   return (
     <div
-      ref={ref}
       onMouseMove={onMove}
-      onMouseEnter={() => setActive(true)}
-      onMouseLeave={() => setActive(false)}
-      className={`relative overflow-hidden ${className}`}
+      className={`spotlight-host relative overflow-hidden ${className}`}
     >
       <div
-        className="pointer-events-none absolute inset-0 z-10 transition-opacity duration-300"
+        ref={glowRef}
+        className="spotlight-glow pointer-events-none absolute inset-0 z-10 opacity-0 transition-opacity duration-300"
         style={{
-          opacity: active ? 1 : 0,
-          background: `radial-gradient(${radius}px circle at ${pos.x}px ${pos.y}px, ${glow}, transparent 65%)`,
+          background: `radial-gradient(${radius}px circle at var(--mx, 50%) var(--my, 50%), ${glow}, transparent 65%)`,
         }}
       />
       {children}

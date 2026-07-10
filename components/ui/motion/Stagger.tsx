@@ -29,11 +29,10 @@ const containerVariants = (stagger: number, delayChildren: number): Variants => 
 })
 
 const itemVariants = (distance: number): Variants => ({
-  hidden: { opacity: 0, y: distance, filter: 'blur(6px)' },
+  hidden: { opacity: 0, y: distance },
   show: {
     opacity: 1,
     y: 0,
-    filter: 'blur(0px)',
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 })
@@ -61,7 +60,7 @@ export function StaggerContainer({
       variants={containerVariants(stagger, delayChildren)}
       initial="hidden"
       whileInView="show"
-      viewport={{ once, amount: 0.2 }}
+      viewport={{ once, amount: 0.15 }}
     >
       {children}
     </MotionTag>
