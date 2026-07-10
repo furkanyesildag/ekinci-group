@@ -1,84 +1,79 @@
 import Image from 'next/image'
-import { OFFICES, SALES_OFFICES } from '@/lib/constants'
+import { CITY_OFFICES } from '@/lib/constants'
 import MaterialIcon from '@/components/ui/MaterialIcon'
+import SpotlightCard from '@/components/ui/motion/SpotlightCard'
+import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
 
 export default function OfficeCards() {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 -mt-16 relative z-10 pb-4">
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:-mt-16 relative z-10 pb-4">
+      <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6" stagger={0.12}>
+        {CITY_OFFICES.map(office => (
+          <StaggerItem key={office.city} className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-ambient-xl hover:shadow-ambient-2xl transition-shadow duration-300">
+            <SpotlightCard className="group flex h-full flex-col rounded-3xl">
 
-        {/* Genel Merkez */}
-        <div className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-ambient-xl">
-          {OFFICES[0].imageUrl && (
-            <div className="relative h-44 overflow-hidden">
-              <Image src={OFFICES[0].imageUrl} alt="EKİNCİ GROUP Genel Merkez" fill className="object-cover" sizes="33vw" />
-            </div>
-          )}
-          <div className="p-7">
-            <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary font-body mb-3">Genel Merkez</p>
-            <h3 className="font-headline text-xl font-bold text-on-surface mb-4">Siirt Merkez</h3>
-            <div className="flex flex-col gap-3">
-              <p className="text-sm text-on-surface-variant font-body leading-relaxed whitespace-pre-line">{OFFICES[0].address}</p>
-              <a href={`tel:${OFFICES[0].phone}`}
-                className="flex items-center gap-2 text-sm text-on-surface hover:text-primary transition-colors group">
-                <MaterialIcon icon="call" size={16} className="text-primary" />
-                <span className="group-hover:translate-x-2 transition-transform duration-300">{OFFICES[0].phone}</span>
-              </a>
-              <a href={`mailto:${OFFICES[0].email}`}
-                className="flex items-center gap-2 text-sm text-on-surface hover:text-primary transition-colors group">
-                <MaterialIcon icon="mail" size={16} className="text-primary" />
-                <span className="group-hover:translate-x-2 transition-transform duration-300">{OFFICES[0].email}</span>
-              </a>
-            </div>
-          </div>
-        </div>
+              {/* Görsel */}
+              <div className="relative h-48 overflow-hidden shrink-0">
+                <Image
+                  src={office.imageUrl}
+                  alt={`EKİNCİ GROUP — ${office.city}`}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  sizes="(max-width:768px) 100vw, 33vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-on-surface/40 to-transparent" />
+              </div>
 
-        {/* Satış Ofisleri */}
-        <div className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-ambient-xl">
-          {OFFICES[1].imageUrl && (
-            <div className="relative h-44 overflow-hidden">
-              <Image src={OFFICES[1].imageUrl} alt="EKİNCİ GROUP Satış Ofisleri" fill className="object-cover" sizes="33vw" />
-            </div>
-          )}
-          <div className="p-7">
-            <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary font-body mb-3">Satış Ofisleri</p>
-            <h3 className="font-headline text-xl font-bold text-on-surface mb-4">Türkiye geneli</h3>
-            <div className="flex flex-col gap-2">
-              {SALES_OFFICES.map(office => (
-                <details key={office.city} className="group">
-                  <summary className="flex items-center justify-between cursor-pointer py-3 border-b border-outline-variant/20 list-none">
-                    <span className="text-sm font-semibold text-on-surface font-body">{office.city}</span>
-                    <MaterialIcon icon="expand_more" size={18} className="text-outline-variant group-open:rotate-180 transition-transform duration-300" />
-                  </summary>
-                  <div className="pt-3 pb-2 text-xs text-on-surface-variant font-body leading-relaxed space-y-1">
-                    <p className="whitespace-pre-line">{office.address}</p>
-                    <a href={`tel:${office.phone}`} className="text-primary hover:underline block">{office.phone}</a>
-                  </div>
-                </details>
-              ))}
-            </div>
-          </div>
-        </div>
+              {/* İçerik */}
+              <div className="p-7 flex flex-col gap-4 flex-1">
+                <div>
+                  <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary font-body mb-2">
+                    {office.label}
+                  </p>
+                  <h3 className="font-headline text-2xl font-bold text-on-surface mb-3">{office.city}</h3>
 
-        {/* Müşteri Hizmetleri */}
-        <div className="bg-[#303330] rounded-3xl p-7 shadow-ambient-xl flex flex-col justify-between">
-          <div>
-            <p className="text-[11px] font-bold tracking-[0.15em] uppercase text-primary-fixed/60 font-body mb-3">Müşteri Hizmetleri</p>
-            <h3 className="font-headline text-xl font-bold text-white mb-6">7/24 Destek</h3>
-            <a href={`tel:${OFFICES[2].phone}`} className="font-headline text-4xl font-bold text-primary-fixed block mb-2">
-              {OFFICES[2].phone}
-            </a>
-            <p className="text-xs text-white/50 font-body leading-relaxed">
-              Hafta içi ve hafta sonu, günün her saatinde satış danışmanlarımıza ulaşabilirsiniz.
-            </p>
-          </div>
-          <div className="mt-8 pt-6 border-t border-white/10">
-            <p className="font-headline text-sm italic text-white/60 leading-snug">
-              &ldquo;Müşteri memnuniyeti, başarımızın ölçütüdür.&rdquo;
-            </p>
-          </div>
-        </div>
-      </div>
+                  {/* Adres — Maps linki */}
+                  <a
+                    href={office.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-start gap-2.5 text-sm text-on-surface-variant hover:text-primary transition-colors group/link"
+                  >
+                    <span className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <MaterialIcon icon="location_on" size={14} className="text-primary" />
+                    </span>
+                    <span className="leading-relaxed group-hover/link:underline underline-offset-2">
+                      {office.address}
+                    </span>
+                  </a>
+                </div>
+
+                <div className="mt-auto flex flex-col gap-3 pt-4 border-t border-outline-variant/20">
+                  <a
+                    href={`tel:${office.phone}`}
+                    className="flex items-center gap-2.5 text-sm text-on-surface hover:text-primary transition-colors group/link"
+                  >
+                    <span className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <MaterialIcon icon="call" size={14} className="text-primary" />
+                    </span>
+                    <span className="group-hover/link:translate-x-1 transition-transform duration-300">{office.phone}</span>
+                  </a>
+                  <a
+                    href={`mailto:${office.email}`}
+                    className="flex items-center gap-2.5 text-sm text-on-surface hover:text-primary transition-colors group/link"
+                  >
+                    <span className="w-7 h-7 rounded-lg bg-primary/10 flex items-center justify-center shrink-0">
+                      <MaterialIcon icon="mail" size={14} className="text-primary" />
+                    </span>
+                    <span className="group-hover/link:translate-x-1 transition-transform duration-300">{office.email}</span>
+                  </a>
+                </div>
+              </div>
+
+            </SpotlightCard>
+          </StaggerItem>
+        ))}
+      </StaggerContainer>
     </section>
   )
 }

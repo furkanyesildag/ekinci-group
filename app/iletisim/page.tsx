@@ -1,8 +1,6 @@
 import type { Metadata } from 'next'
 import ContactHero from '@/components/iletisim/ContactHero'
 import OfficeCards from '@/components/iletisim/OfficeCards'
-import ContactForm from '@/components/iletisim/ContactForm'
-import MapSection from '@/components/iletisim/MapSection'
 
 export const metadata: Metadata = {
   title: 'İletişim',
@@ -14,8 +12,6 @@ export default function IletisimPage() {
     <>
       <ContactHero />
       <OfficeCards />
-      <ContactForm />
-      <MapSection />
     </>
   )
 }

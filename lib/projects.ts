@@ -4,10 +4,32 @@ import { publicImage as img } from '@/lib/publicImage'
 
 /** Vizyon ve ortak bölümlerde kullanılan görsel */
 export const PROJECT_IMAGES = {
-  vision: img('ekinci.jpg'),
+  /** Dikey pazarlama görseli — vizyon vb. sütun yerleşimleri */
+  vision: img('ekinci-brand-portrait.png'),
 }
 
-export const PROJECTS: Project[] = [
+/** Sabit liste sırası: projeler sayfası, grid ve öne çıkan bölümler bu düzene göre */
+const PROJECT_SLUG_ORDER: string[] = [
+  'oztatli-konutlari',
+  'ekinci-royal-park',
+  'armada-city',
+  'mar-vista',
+  'prestij-park',
+  'newbahar',
+  'prestij-gold',
+  'ekinci-plaza',
+  'saray-sitesi',
+  'saray-2-sitesi',
+  'ekinci-residence',
+  'barroce-evleri',
+]
+
+function sortProjectList(list: Project[]): Project[] {
+  const idx = new Map(PROJECT_SLUG_ORDER.map((s, i) => [s, i]))
+  return [...list].sort((a, b) => (idx.get(a.slug) ?? 999) - (idx.get(b.slug) ?? 999))
+}
+
+const PROJECTS_DATA: Project[] = [
   {
     slug: 'mar-vista',
     name: 'Mar Vista',
@@ -43,7 +65,7 @@ export const PROJECTS: Project[] = [
       { label: 'Şehir merkezi', distance: '—', description: 'Ulaşım hatlarına yakın' },
       { label: 'Sosyal donatılar', distance: 'Site içi', description: 'Çocuk oyun alanı' },
     ],
-    featured: true,
+    featured: false,
   },
   {
     slug: 'oztatli-konutlari',
@@ -60,7 +82,7 @@ export const PROJECTS: Project[] = [
       'Ortak kullanım alanları ve cephe düzeni ile sürdürülebilir bir yaşam alanı sunar.',
     ],
     heroImage: {
-      src: img('tatli/ÖztatlıKonutları.jpeg'),
+      src: img('tatli/oztatli-konutlari-hero.jpeg'),
       alt: 'Öztatlı Konutları',
     },
     galleryImages: [
@@ -139,7 +161,7 @@ export const PROJECTS: Project[] = [
       { label: 'Ulaşım', distance: 'Yakın', description: 'Ana arter bağlantısı' },
       { label: 'Alışveriş', distance: '—', description: 'Çevre hizmetler' },
     ],
-    featured: true,
+    featured: false,
   },
   {
     slug: 'ekinci-royal-park',
@@ -169,7 +191,7 @@ export const PROJECTS: Project[] = [
     ],
     floorPlans: [{ label: '3+1 — 4+1 konutlar' }],
     proximity: [{ label: 'Şehir', distance: '—', description: 'Hızlı erişim' }],
-    featured: true,
+    featured: false,
   },
   {
     slug: 'saray-2-sitesi',
@@ -259,7 +281,7 @@ export const PROJECTS: Project[] = [
     ],
     floorPlans: [{ label: 'Ofis ve ticari birim planları' }],
     proximity: [{ label: 'Şehir merkezi', distance: 'Merkezî', description: 'Yoğun ticari bölge' }],
-    featured: true,
+    featured: false,
   },
   {
     slug: 'ekinci-residence',
@@ -383,12 +405,24 @@ export const PROJECTS: Project[] = [
   },
 ]
 
+export const PROJECTS = sortProjectList(PROJECTS_DATA)
+
+/** Filtrelenmiş listeyi sayfa sırasına göre düzenler */
+export function sortProjectsByDisplayOrder(projects: Project[]): Project[] {
+  return sortProjectList(projects)
+}
+
+/** Ana sayfa hero slider: ilk dört proje (Tatlı → Royal Park → Armada → Mar Vista) */
+export function getHomeHeroSliderProjects(): Project[] {
+  return PROJECTS.slice(0, 4)
+}
+
 export function getProjectBySlug(slug: string) {
   return PROJECTS.find(p => p.slug === slug)
 }
 
 export function getFeaturedProjects(): typeof PROJECTS {
-  return PROJECTS.filter(p => p.featured)
+  return PROJECTS.slice(0, 6)
 }
 
 export function getProjectsByCategory(cat: Project['category']) {

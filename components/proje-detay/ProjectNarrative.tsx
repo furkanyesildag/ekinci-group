@@ -6,12 +6,12 @@ interface Props { project: Project }
 
 export default function ProjectNarrative({ project }: Props) {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
         {/* Text */}
         <div className="lg:col-span-7">
           <SectionLabel>Felsefe & Vizyon</SectionLabel>
-          <h2 className="font-headline text-4xl md:text-5xl font-bold tracking-tighter text-on-surface mb-8 leading-tight">
+          <h2 className="font-headline text-3xl md:text-5xl font-bold tracking-tighter text-on-surface mb-6 md:mb-8 leading-tight">
             {project.tagline}
           </h2>
           {project.narrative.map((para, i) => (

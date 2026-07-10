@@ -6,11 +6,11 @@ interface Props { project: Project }
 
 export default function LocationSection({ project }: Props) {
   return (
-    <section className="bg-surface-container-low py-20">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+    <section className="bg-surface-container-low py-14 md:py-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-10">
           <SectionLabel>Konum & Çevre</SectionLabel>
-          <h2 className="font-headline text-4xl font-bold tracking-tighter text-on-surface">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter text-on-surface">
             {project.city}&apos;nin Kalbinde
           </h2>
         </div>
@@ -35,7 +35,7 @@ export default function LocationSection({ project }: Props) {
           </div>
 
           {/* Map image */}
-          <div className="lg:col-span-8 relative h-[400px] lg:h-[500px] rounded-3xl overflow-hidden shadow-ambient-xl">
+          <div className="lg:col-span-8 relative h-[280px] sm:h-[360px] lg:h-[500px] rounded-3xl overflow-hidden shadow-ambient-xl">
             <Image
               src={project.galleryImages[2]?.src ?? project.heroImage.src}
               alt={`${project.name} konumu`}

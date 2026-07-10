@@ -6,7 +6,7 @@ import MaterialIcon from '@/components/ui/MaterialIcon'
 export default function Footer() {
   return (
     <footer className="bg-[#1c1e1b]">
-      <div className="max-w-7xl mx-auto px-6 lg:px-8 pt-16 pb-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 md:pt-16 pb-8 md:pb-10">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-2">
@@ -47,23 +47,6 @@ export default function Footer() {
               {NAV_LINKS.map(l => (
                 <li key={l.href}><Link href={l.href} className="text-sm text-white/50 hover:text-primary-fixed transition-colors font-body">{l.label}</Link></li>
               ))}
-            </ul>
-          </div>
-
-          {/* Kurumsal */}
-          <div>
-            <h4 className="text-[11px] font-bold tracking-[0.15em] uppercase text-white/30 font-body mb-5">Kurumsal</h4>
-            <ul className="flex flex-col gap-3">
-              <li><Link href="/kurumsal" className="text-sm text-white/50 hover:text-primary-fixed transition-colors font-body">Hakkımızda</Link></li>
-              <li><Link href="/kurumsal" className="text-sm text-white/50 hover:text-primary-fixed transition-colors font-body">Sürdürülebilirlik</Link></li>
-              <li><Link href="/iletisim" className="text-sm text-white/50 hover:text-primary-fixed transition-colors font-body">Kariyer</Link></li>
-              <li><Link href="/iletisim" className="text-sm text-white/50 hover:text-primary-fixed transition-colors font-body">Medya & Basın</Link></li>
-              <li>
-                <a href={`https://wa.me/${COMPANY.whatsapp}`} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-1.5 text-sm text-white/50 hover:text-primary-fixed transition-colors font-body">
-                  <MaterialIcon icon="chat" size={15} />WhatsApp
-                </a>
-              </li>
             </ul>
           </div>
         </div>

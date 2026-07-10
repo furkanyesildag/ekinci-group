@@ -7,7 +7,7 @@ interface Props { project: Project }
 
 export default function FloorPlans({ project }: Props) {
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 py-20">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14 md:py-20">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         {/* Blueprint image */}
         <div className="relative aspect-[4/3] rounded-3xl overflow-hidden bg-surface-container-high">
@@ -23,7 +23,7 @@ export default function FloorPlans({ project }: Props) {
         {/* Plans list */}
         <div>
           <SectionLabel>Kat Planları</SectionLabel>
-          <h2 className="font-headline text-4xl font-bold tracking-tighter text-on-surface mb-3">
+          <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter text-on-surface mb-3">
             Daire Tipleri
           </h2>
           <p className="text-on-surface-variant font-body text-sm mb-8 leading-relaxed">

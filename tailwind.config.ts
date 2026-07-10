@@ -89,7 +89,9 @@ const config: Config = {
       boxShadow: {
         'ambient':    '0px 20px 40px rgba(48,51,48,0.06)',
         'ambient-md': '0px 20px 40px rgba(48,51,48,0.12)',
+        'ambient-lg': '0px 24px 48px rgba(48,51,48,0.16)',
         'ambient-xl': '0px 20px 40px rgba(48,51,48,0.20)',
+        'ambient-2xl':'0px 32px 64px rgba(48,51,48,0.28)',
         'primary':    '0 10px 30px rgba(121,89,39,0.20)',
         'primary-lg': '0 20px 50px rgba(121,89,39,0.30)',
       },

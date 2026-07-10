@@ -26,7 +26,7 @@ export default function Navbar() {
   return (
     <>
       <header className={`sticky top-0 z-30 transition-all duration-300 ${scrolled ? 'glass-nav border-b border-outline/10 shadow-ambient' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Link href="/" className="relative block hover:opacity-90 transition-opacity duration-200">

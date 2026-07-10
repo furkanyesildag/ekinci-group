@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 import KurumsalHero from '@/components/kurumsal/KurumsalHero'
 import CompanyStory from '@/components/kurumsal/CompanyStory'
 import ValuesGrid from '@/components/kurumsal/ValuesGrid'
-import LeadershipGrid from '@/components/kurumsal/LeadershipGrid'
 import SustainabilityBanner from '@/components/kurumsal/SustainabilityBanner'
 
 export const metadata: Metadata = {
@@ -17,7 +16,6 @@ export default function KurumsalPage() {
       <KurumsalHero />
       <CompanyStory />
       <ValuesGrid />
-      <LeadershipGrid />
       <SustainabilityBanner />
     </>
   )

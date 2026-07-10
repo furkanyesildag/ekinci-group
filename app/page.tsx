@@ -1,7 +1,9 @@
 import type { Metadata } from 'next'
 import HeroSlider from '@/components/home/HeroSlider'
 import StatsBand from '@/components/home/StatsBand'
+import TrustMarquee from '@/components/home/TrustMarquee'
 import VisionSection from '@/components/home/VisionSection'
+import ProcessSection from '@/components/home/ProcessSection'
 import ProjectCarousel from '@/components/home/ProjectCarousel'
 import CtaBanner from '@/components/home/CtaBanner'
 
@@ -16,8 +18,10 @@ export default function HomePage() {
     <>
       <HeroSlider />
       <StatsBand />
+      <TrustMarquee />
       <VisionSection />
       <ProjectCarousel />
+      <ProcessSection />
       <CtaBanner />
     </>
   )

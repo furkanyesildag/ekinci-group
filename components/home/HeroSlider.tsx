@@ -4,12 +4,23 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback } from 'react'
-import { PROJECTS } from '@/lib/projects'
+import { motion, type Variants } from 'framer-motion'
+import { getHomeHeroSliderProjects } from '@/lib/projects'
 import Badge from '@/components/ui/Badge'
 import MaterialIcon from '@/components/ui/MaterialIcon'
+import ShimmerButton from '@/components/ui/motion/ShimmerButton'
+import Magnetic from '@/components/ui/motion/Magnetic'
 
-// Sadece featured projeleri hero'da göster
-const SLIDES = PROJECTS.filter(p => p.featured)
+const heroContainer: Variants = {
+  hidden: {},
+  show: { transition: { staggerChildren: 0.13, delayChildren: 0.15 } },
+}
+const heroItem: Variants = {
+  hidden: { opacity: 0, y: 26, filter: 'blur(10px)' },
+  show: { opacity: 1, y: 0, filter: 'blur(0px)', transition: { duration: 0.85, ease: [0.22, 1, 0.36, 1] } },
+}
+
+const SLIDES = getHomeHeroSliderProjects()
 
 const AUTO_PLAY_MS = 6000
 
@@ -23,6 +34,7 @@ export default function HeroSlider() {
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
 
   const goTo = useCallback((index: number) => {
+    if (SLIDES.length === 0) return
     setCurrent(((index % SLIDES.length) + SLIDES.length) % SLIDES.length)
   }, [])
 
@@ -31,7 +43,7 @@ export default function HeroSlider() {
 
   // Otomatik oynatma
   useEffect(() => {
-    if (paused || isDragging) return
+    if (SLIDES.length === 0 || paused || isDragging) return
     timerRef.current = setTimeout(next, AUTO_PLAY_MS)
     return () => { if (timerRef.current) clearTimeout(timerRef.current) }
   }, [current, paused, isDragging, next])
@@ -77,7 +89,21 @@ export default function HeroSlider() {
     router.push(`/projeler/${slug}`)
   }
 
-  const slide = SLIDES[current]
+  if (SLIDES.length === 0) {
+    return (
+      <section className="relative -mt-[72px] flex min-h-[600px] w-full items-center justify-center bg-on-surface px-6 pt-20 text-center text-white">
+        <p className="font-body text-sm text-white/80">
+          Projeler yüklenemedi. Lütfen sayfayı yenileyin veya{' '}
+          <Link href="/projeler" className="text-primary-fixed underline">
+            projeler
+          </Link>{' '}
+          sayfasına gidin.
+        </p>
+      </section>
+    )
+  }
+
+  const slide = SLIDES[current] ?? SLIDES[0]
 
   return (
     <section
@@ -120,33 +146,43 @@ export default function HeroSlider() {
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none" />
 
       {/* ── ANA İÇERİK ── */}
-      <div className="relative z-20 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pointer-events-none">
-        <p className="text-[11px] font-bold tracking-[0.25em] uppercase text-primary-fixed/80 font-body mb-5">
-          Est. 1968 · Siirt · Türkiye geneli
-        </p>
-        <h1 className="font-headline text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tighter leading-[1.05] max-w-5xl mb-5 text-balance">
+      <motion.div
+        variants={heroContainer}
+        initial="hidden"
+        animate="show"
+        className="relative z-20 flex flex-col items-center justify-center h-full text-center px-6 pt-20 pointer-events-none"
+      >
+        <motion.p variants={heroItem} className="flex items-center gap-2 text-[11px] sm:text-[15px] font-bold tracking-[0.25em] text-primary-fixed/80 font-body mb-5">
+          <span className="hidden sm:inline h-px w-8 bg-primary-fixed/50" />
+          EST. 1968 · İSTANBUL · ANKARA · İZMİR · SİİRT
+          <span className="hidden sm:inline h-px w-8 bg-primary-fixed/50" />
+        </motion.p>
+        <motion.h1 variants={heroItem} className="font-headline text-3xl sm:text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white tracking-tighter leading-[1.05] max-w-5xl mb-5 text-balance">
           Yarının Yaşam<br />
-          <em className="not-italic text-primary-fixed">Standartlarını</em><br />
+          <em className="not-italic text-gradient-gold">Standartlarını</em><br />
           Bugünden İnşa Ediyoruz
-        </h1>
-        <p className="text-base md:text-lg text-white/70 font-body max-w-xl mb-10 leading-relaxed">
+        </motion.h1>
+        <motion.p variants={heroItem} className="text-sm md:text-lg text-white/70 font-body max-w-xl mb-8 leading-relaxed px-2 sm:px-0">
           Yarım asırdan fazla tecrübe; konut, ticari yapılar ve kentsel dönüşümde güvenilir teslim.
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 items-center pointer-events-auto">
-          <Link href="/projeler"
-            className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-3.5 rounded-xl font-body font-semibold text-sm tracking-wide hover:bg-primary-dim shadow-primary hover:shadow-primary-lg transition-all duration-300">
-            <MaterialIcon icon="apartment" size={18} className="text-primary-fixed" />
-            Projelerimizi Keşfet
-          </Link>
-          <Link href="/iletisim"
-            className="inline-flex items-center gap-2 border border-white/50 text-white px-8 py-3.5 rounded-xl font-body font-semibold text-sm tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300">
-            İletişime Geç
-          </Link>
-        </div>
-      </div>
+        </motion.p>
+        <motion.div variants={heroItem} className="flex flex-col sm:flex-row gap-3 sm:gap-4 items-center pointer-events-auto w-full sm:w-auto px-4 sm:px-0">
+          <Magnetic className="w-full sm:w-auto">
+            <ShimmerButton href="/projeler" className="w-full sm:w-auto">
+              <MaterialIcon icon="apartment" size={18} className="text-primary-fixed" />
+              Projelerimizi Keşfet
+            </ShimmerButton>
+          </Magnetic>
+          <Magnetic className="w-full sm:w-auto">
+            <Link href="/iletisim"
+              className="inline-flex items-center justify-center gap-2 border border-white/50 text-white w-full sm:w-auto px-8 py-3.5 rounded-xl font-body font-semibold text-sm tracking-wide hover:bg-white/10 backdrop-blur-sm transition-all duration-300">
+              İletişime Geç
+            </Link>
+          </Magnetic>
+        </motion.div>
+      </motion.div>
 
       {/* ── AKTİF PROJE KARTI (sol alt) ── */}
-      <div className="absolute left-6 lg:left-10 bottom-24 z-20 pointer-events-auto">
+      <div className="absolute left-4 lg:left-10 bottom-24 z-20 pointer-events-auto hidden sm:block">
         <Link href={`/projeler/${slide.slug}`}
           className="group flex items-center gap-4 bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4 hover:bg-black/50 transition-all duration-300 max-w-xs">
           <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
@@ -165,7 +201,7 @@ export default function HeroSlider() {
       </div>
 
       {/* ── PREV / NEXT ── */}
-      <div className="absolute right-6 lg:right-10 bottom-24 z-20 flex gap-2 pointer-events-auto">
+      <div className="absolute right-4 lg:right-10 bottom-24 z-20 flex gap-2 pointer-events-auto">
         <button onClick={prev}
           className="w-11 h-11 rounded-full border border-white/25 backdrop-blur-sm flex items-center justify-center text-white hover:bg-white/15 transition-all duration-200">
           <MaterialIcon icon="arrow_back" size={18} />

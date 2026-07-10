@@ -31,7 +31,7 @@ export const OFFICES: OfficeLocation[] = [
     address: 'Siirt\nMerkez Ofis\nTürkiye',
     phone: COMPANY.phone,
     email: COMPANY.email,
-    imageUrl: publicImage('ekinci.jpg'),
+    imageUrl: publicImage('ekinci-brand-hero.png'),
     type: 'HQ',
   },
   {
@@ -39,7 +39,7 @@ export const OFFICES: OfficeLocation[] = [
     name: 'Satış Ofisleri',
     address: '',
     type: 'SATIS',
-    imageUrl: publicImage('armada/armada.jpeg'),
+    imageUrl: publicImage('satis-ofisleri-hero.png'),
   },
   {
     id: 'hizmet',
@@ -51,16 +51,32 @@ export const OFFICES: OfficeLocation[] = [
   },
 ]
 
-export const SALES_OFFICES = [
+export const CITY_OFFICES = [
   {
-    city: 'Siirt — Merkez',
-    address: 'Merkez ofis ile görüşme için iletişim formunu kullanabilir veya telefon ile randevu alabilirsiniz.',
+    city: 'Siirt',
+    label: 'Satış Ofisi',
+    address: 'Veysel Karani Mahallesi Kurtalan Yolu Caddesi Armada City Altı',
+    mapsUrl: 'https://maps.google.com/?q=Veysel+Karani+Mahallesi+Kurtalan+Yolu+Caddesi+Armada+City+Alti+Siirt',
     phone: COMPANY.phone,
+    email: COMPANY.email,
+    imageUrl: publicImage('satis-ofisleri-hero.png'),
   },
   {
-    city: 'Türkiye geneli',
-    address:
-      'Projelerimiz Siirt başta olmak üzere Türkiye\'nin çeşitli illerindedir. Detaylar için projeler sayfamızı inceleyin.',
+    city: 'Ankara',
+    label: 'Satış Ofisi',
+    address: 'Kızılırmak Mahallesi 150. Sokak ATM A Blok 1/4 Çukurambar',
+    mapsUrl: 'https://maps.google.com/?q=Kızılırmak+Mahallesi+150.+Sokak+ATM+A+Blok+1/4+Çukurambar+Ankara',
     phone: COMPANY.phone,
+    email: COMPANY.email,
+    imageUrl: publicImage('satis-ofisi-ankara.png'),
+  },
+  {
+    city: 'İstanbul',
+    label: 'Satış Ofisi',
+    address: 'Çobançeşme, Sanayi Cd. No: 44 — NİSH İstanbul / Bahçelievler',
+    mapsUrl: 'https://maps.google.com/?q=Çobançeşme+Sanayi+Cd.+No:44+NİSH+İstanbul+Bahçelievler',
+    phone: COMPANY.phone,
+    email: COMPANY.email,
+    imageUrl: publicImage('satis-ofisi-istanbul.png'),
   },
 ]

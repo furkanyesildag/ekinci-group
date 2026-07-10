@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { Suspense } from 'react'
-import { PROJECTS } from '@/lib/projects'
+import { PROJECTS, sortProjectsByDisplayOrder } from '@/lib/projects'
 import ProjectsHero from '@/components/projeler/ProjectsHero'
 import ContactBar from '@/components/projeler/ContactBar'
 import FilterBar from '@/components/projeler/FilterBar'
@@ -20,10 +20,12 @@ interface Props {
 export default function ProjelerPage({ searchParams }: Props) {
   const filtre = searchParams.filtre ?? ''
 
-  const filtered = PROJECTS.filter(p => {
-    if (!filtre) return true
-    return p.status === filtre || p.category === filtre
-  })
+  const filtered = sortProjectsByDisplayOrder(
+    PROJECTS.filter(p => {
+      if (!filtre) return true
+      return p.status === filtre || p.category === filtre
+    }),
+  )
 
   return (
     <>

@@ -12,13 +12,13 @@ export default function BentoGallery({ project }: Props) {
   const quad = imgs.length >= 4 ? imgs.slice(0, 4) : [...imgs, imgs[0]]
 
   return (
-    <section className="max-w-7xl mx-auto px-6 lg:px-8 pb-20">
+    <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-14 md:pb-20">
       <div className="mb-8">
         <SectionLabel>Proje Galerisinden</SectionLabel>
         <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter text-on-surface">Seçilmiş Kareler</h2>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-4 grid-rows-2 gap-4 h-auto md:h-[600px]">
+      <div className="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-3 md:gap-4 h-auto md:h-[600px]">
         {/* Large — col-span-2 row-span-2 */}
         <div className="group relative md:col-span-2 md:row-span-2 rounded-2xl overflow-hidden min-h-[300px] md:min-h-0">
           <Image src={quad[0].src} alt={quad[0].alt} fill className="object-cover group-hover:scale-105 transition-transform duration-700" sizes="(max-width:768px) 100vw, 50vw" />

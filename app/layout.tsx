@@ -4,6 +4,8 @@ import './globals.css'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import WhatsAppFAB from '@/components/ui/WhatsAppFAB'
+import ChatWidget from '@/components/ui/ChatWidget'
+import ScrollProgress from '@/components/ui/motion/ScrollProgress'
 
 const notoSerif = Noto_Serif({
   subsets: ['latin'],
@@ -25,7 +27,7 @@ export const metadata: Metadata = {
     default: 'EKİNCİ GROUP İNŞAAT | Geleceğin Yaşam Alanlarını İnşa Ediyoruz',
     template: '%s | EKİNCİ GROUP İNŞAAT',
   },
-  description: '1968\'den beri Türkiye\'de konut, ticari yapılar ve kentsel dönüşüm projeleri. Siirt merkezli Ekinci Şirketler Grubu.',
+  description: '1968\'den beri Türkiye\'de konut, ticari yapılar ve kentsel dönüşüm projeleri. Ankara, İstanbul ve Siirt\'te operasyonları bulunan Ekinci Şirketler Grubu.',
   keywords: ['inşaat', 'konut', 'Ekinci Group', 'Siirt', 'gayrimenkul', 'kentsel dönüşüm', 'EKİNCİ GROUP'],
   openGraph: {
     siteName: 'EKİNCİ GROUP İNŞAAT',
@@ -42,10 +44,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="tr" className={`${notoSerif.variable} ${manrope.variable}`}>
       <body className="font-body bg-surface text-on-surface antialiased">
+        <ScrollProgress />
         <Navbar />
         <main>{children}</main>
         <Footer />
         <WhatsAppFAB />
+        <ChatWidget />
       </body>
     </html>
   )
