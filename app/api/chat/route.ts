@@ -1,7 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server'
 import OpenAI from 'openai'
 
-const client = new OpenAI({ apiKey: process.env.OPENAI_API_KEY })
+// DeepSeek OpenAI-uyumlu API — aynı SDK, farklı baseURL + model
+const client = new OpenAI({
+  apiKey: process.env.DEEPSEEK_API_KEY,
+  baseURL: 'https://api.deepseek.com',
+})
 
 const SYSTEM_PROMPT = `Sen EKİNCİ GROUP İNŞAAT'ın resmi dijital asistanısın. Adın "Ekinci Asistan".
 
@@ -85,12 +89,12 @@ export async function POST(req: NextRequest) {
   try {
     const { messages } = await req.json()
 
-    if (!process.env.OPENAI_API_KEY || process.env.OPENAI_API_KEY === 'your_openai_api_key_here') {
+    if (!process.env.DEEPSEEK_API_KEY) {
       return NextResponse.json({ error: 'API anahtarı yapılandırılmamış.' }, { status: 500 })
     }
 
     const completion = await client.chat.completions.create({
-      model: 'gpt-4o-mini',
+      model: 'deepseek-chat',
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         ...messages,
