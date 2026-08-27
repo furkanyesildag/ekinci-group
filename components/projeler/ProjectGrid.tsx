@@ -1,8 +1,6 @@
 import type { Project } from '@/types'
 import ProjectCard from './ProjectCard'
-import Link from 'next/link'
 import MaterialIcon from '@/components/ui/MaterialIcon'
-import Magnetic from '@/components/ui/motion/Magnetic'
 import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
 
 interface Props {
@@ -31,16 +29,6 @@ export default function ProjectGrid({ projects }: Props) {
           </StaggerItem>
         ))}
       </StaggerContainer>
-
-      <div className="text-center pt-10">
-        <Magnetic className="inline-block">
-          <Link href="/iletisim"
-            className="inline-flex items-center gap-2 bg-primary text-on-primary px-8 py-4 rounded-xl font-body font-semibold text-sm tracking-wide hover:bg-primary-dim shadow-primary hover:shadow-primary-lg transition-all duration-300">
-            <MaterialIcon icon="mail" size={18} className="text-primary-fixed" />
-            Özel Portföy Talep Et
-          </Link>
-        </Magnetic>
-      </div>
     </div>
   )
 }

@@ -53,15 +53,6 @@ export const OFFICES: OfficeLocation[] = [
 
 export const CITY_OFFICES = [
   {
-    city: 'Siirt',
-    label: 'Satış Ofisi',
-    address: 'Veysel Karani Mahallesi Kurtalan Yolu Caddesi Armada City Altı',
-    mapsUrl: 'https://maps.google.com/?q=Veysel+Karani+Mahallesi+Kurtalan+Yolu+Caddesi+Armada+City+Alti+Siirt',
-    phone: COMPANY.phone,
-    email: COMPANY.email,
-    imageUrl: publicImage('satis-ofisleri-hero.png'),
-  },
-  {
     city: 'Ankara',
     label: 'Satış Ofisi',
     address: 'Kızılırmak Mahallesi 150. Sokak ATM A Blok 1/4 Çukurambar',
@@ -71,12 +62,12 @@ export const CITY_OFFICES = [
     imageUrl: publicImage('satis-ofisi-ankara.png'),
   },
   {
-    city: 'İstanbul',
+    city: 'Siirt',
     label: 'Satış Ofisi',
-    address: 'Çobançeşme, Sanayi Cd. No: 44 — NİSH İstanbul / Bahçelievler',
-    mapsUrl: 'https://maps.google.com/?q=Çobançeşme+Sanayi+Cd.+No:44+NİSH+İstanbul+Bahçelievler',
+    address: 'Veysel Karani Mahallesi Kurtalan Yolu Caddesi Armada City Altı',
+    mapsUrl: 'https://maps.google.com/?q=Veysel+Karani+Mahallesi+Kurtalan+Yolu+Caddesi+Armada+City+Alti+Siirt',
     phone: COMPANY.phone,
     email: COMPANY.email,
-    imageUrl: publicImage('satis-ofisi-istanbul.png'),
+    imageUrl: publicImage('satis-ofisleri-hero.png'),
   },
 ]

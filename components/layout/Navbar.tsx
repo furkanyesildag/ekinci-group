@@ -20,13 +20,18 @@ export default function Navbar() {
   }, [])
 
   // Hero sayfalarında navbar transparan + beyaz logo; scroll sonrası glass + koyu logo
-  const isHeroPage = pathname === '/' || pathname === '/projeler' || pathname === '/kurumsal' || pathname === '/iletisim'
+  // (proje detay sayfaları /projeler/... da koyu hero'ya sahip → dahil edildi)
+  const isHeroPage = pathname === '/' || pathname.startsWith('/projeler') || pathname === '/kurumsal' || pathname === '/iletisim'
   const logoLight = isHeroPage && !scrolled
 
   return (
     <>
       <header className={`sticky top-0 z-30 transition-all duration-300 ${scrolled ? 'glass-nav border-b border-outline/10 shadow-ambient' : 'bg-transparent'}`}>
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Üst karartma — transparan durumda beyaz başlık yazıları her görselde okunur kalsın */}
+        {!scrolled && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/55 via-black/25 to-transparent" />
+        )}
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between py-4">
             {/* Logo */}
             <Link href="/" className="relative block hover:opacity-90 transition-opacity duration-200">
@@ -38,7 +43,7 @@ export default function Navbar() {
                 priority
                 className={`object-contain h-12 w-auto transition-all duration-300 ${
                   logoLight
-                    ? 'brightness-100'          // beyaz/altın logo — koyu hero üzerinde mükemmel
+                    ? 'brightness-100 drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]'  // beyaz/altın logo — koyu hero üzerinde mükemmel
                     : 'brightness-0'             // siyaha çevir — açık glass navbar üzerinde görünür
                 }`}
               />
@@ -49,10 +54,12 @@ export default function Navbar() {
               {NAV_LINKS.map(link => (
                 <Link key={link.href} href={link.href}
                   className={`relative text-[11px] font-bold tracking-[0.15em] uppercase font-body transition-colors duration-200 group pb-1 ${
+                    logoLight ? '[text-shadow:_0_1px_8px_rgba(0,0,0,0.5)]' : ''
+                  } ${
                     pathname === link.href
                       ? logoLight ? 'text-white' : 'text-primary'
                       : logoLight
-                        ? 'text-white/80 hover:text-white'
+                        ? 'text-white/90 hover:text-white'
                         : 'text-on-surface-variant hover:text-primary'
                   }`}
                 >

@@ -29,7 +29,7 @@ const ACTIONS = [
   {
     icon: 'location_on',
     eyebrow: 'Satış Ofisleri',
-    title: 'Ankara · İstanbul · Siirt',
+    title: 'Ankara · Siirt',
     desc: 'Showroom ziyareti için iletişim sayfasından randevu alabilirsiniz.',
     cta: 'Ofisleri Gör',
     href: '/iletisim',

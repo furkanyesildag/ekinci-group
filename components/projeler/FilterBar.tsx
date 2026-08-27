@@ -3,12 +3,9 @@
 import { useRouter, useSearchParams, usePathname } from 'next/navigation'
 
 const FILTERS = [
-  { label: 'Tümü',              value: '' },
-  { label: 'Satışta Olanlar',   value: 'SATIŞTA' },
-  { label: 'Tamamlananlar',     value: 'TAMAMLANDI' },
-  { label: 'Konut',             value: 'KONUT' },
-  { label: 'Ticari',            value: 'TİCARİ' },
-  { label: 'Karma',             value: 'KARMA' },
+  { label: 'Tümü',   value: '' },
+  { label: 'Konut',  value: 'KONUT' },
+  { label: 'Ticari', value: 'TİCARİ' },
 ]
 
 export default function FilterBar() {
