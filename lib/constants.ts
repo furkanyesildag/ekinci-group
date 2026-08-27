@@ -20,9 +20,11 @@ export const COMPANY = {
 }
 
 export const STATS = [
-  { value: '55+', label: 'Yıllık Deneyim', icon: 'workspace_premium' },
-  { value: '2.000+', label: 'Tamamlanan Daire', icon: 'apartment' },
-  { value: '50+', label: 'Tamamlanan Proje', icon: 'foundation' },
+  { value: '55+',      label: 'Yıllık Deneyim',        icon: 'workspace_premium' },
+  { value: '540 bin+', label: 'm² Tamamlanan İnşaat',  icon: 'square_foot' },
+  { value: '3.200+',   label: 'Tamamlanan Daire',      icon: 'apartment' },
+  { value: '116 bin+', label: 'm² Devam Eden İnşaat',  icon: 'construction' },
+  { value: '50+',      label: 'Tamamlanan Proje',      icon: 'foundation' },
 ]
 
 export const OFFICES: OfficeLocation[] = [

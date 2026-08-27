@@ -1,7 +1,6 @@
 import type { RefCategory, RefItem } from '@/lib/references'
 import SectionLabel from '@/components/ui/SectionLabel'
 import MaterialIcon from '@/components/ui/MaterialIcon'
-import AnimatedCounter from '@/components/ui/motion/AnimatedCounter'
 import Reveal from '@/components/ui/motion/Reveal'
 import SpotlightCard from '@/components/ui/motion/SpotlightCard'
 import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
@@ -11,70 +10,73 @@ interface Props {
   index: number
 }
 
+const DASH = '–'
+
+function Metric({ value, label, gold = false }: { value: string | number; label: string; gold?: boolean }) {
+  return (
+    <div className="flex flex-col items-center justify-center px-1 text-center">
+      <span
+        className={`font-headline text-xl md:text-[1.7rem] font-bold leading-none tracking-tight ${
+          gold ? 'text-primary' : value === DASH ? 'text-outline-variant/50' : 'text-on-surface'
+        }`}
+      >
+        {value}
+      </span>
+      <span className="mt-1.5 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/70">
+        {label}
+      </span>
+    </div>
+  )
+}
+
 function Card({ item, icon }: { item: RefItem; icon: string }) {
-  // Başrol sayı: daire → derslik → (yoksa) not metni
-  const heroValue = item.units ?? item.classrooms
-  const heroLabel = item.units ? 'Daire' : item.classrooms ? 'Derslik' : ''
-  const hasSecondary = Boolean(item.blocks || item.commercial || item.types || (heroValue && item.note))
+  const numeric = Boolean(item.blocks || item.units || item.commercial)
+  const footer = item.types || (item.note && (numeric || item.classrooms))
 
   return (
-    <SpotlightCard className="group flex h-full flex-col rounded-2xl border border-outline-variant/25 bg-surface-container-lowest p-5 md:p-6 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-ambient-xl">
-      {/* Başlık */}
-      <div className="flex items-center gap-3">
-        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
-          <MaterialIcon icon={icon} size={20} className="text-primary transition-colors duration-300 group-hover:text-on-primary" />
+    <SpotlightCard className="group flex h-full flex-col rounded-2xl border border-outline-variant/25 bg-surface-container-lowest p-5 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-ambient-xl">
+      {/* Başlık — sabit yükseklik (2 satır) → tüm kartlar hizalı */}
+      <div className="flex items-start gap-2.5">
+        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
+          <MaterialIcon icon={icon} size={18} className="text-primary transition-colors duration-300 group-hover:text-on-primary" />
         </div>
-        <div className="min-w-0">
-          <h3 className="font-headline text-[15px] md:text-base font-bold leading-tight text-on-surface">{item.name}</h3>
-          {item.location && (
-            <p className="mt-0.5 flex items-center gap-1 font-body text-[11px] text-on-surface-variant">
-              <MaterialIcon icon="location_on" size={12} className="text-primary/70" />
-              {item.location}
-            </p>
-          )}
-        </div>
+        <h3 className="font-headline text-[13px] md:text-sm font-bold leading-snug text-on-surface line-clamp-2 min-h-[2.4em]">
+          {item.name}
+        </h3>
       </div>
 
-      {/* Başrol sayı */}
-      <div className="mt-4 flex flex-1 flex-col justify-end">
-        {heroValue ? (
-          <div>
-            <AnimatedCounter
-              value={String(heroValue)}
-              className="block font-headline text-[2.75rem] leading-none md:text-6xl font-bold tracking-tight text-primary"
-            />
-            <span className="mt-1.5 block font-body text-[10px] md:text-[11px] font-bold uppercase tracking-[0.16em] text-primary/60">
-              {heroLabel}
-            </span>
+      {/* Sayılar — kartın altına hizalı */}
+      <div className="mt-auto pt-5">
+        {numeric ? (
+          <div className="grid grid-cols-3 divide-x divide-outline-variant/20">
+            <Metric value={item.blocks ?? DASH} label="Blok" />
+            <Metric value={item.units ?? DASH} label="Daire" gold />
+            <Metric value={item.commercial ?? DASH} label="Ticari" />
+          </div>
+        ) : item.classrooms ? (
+          <div className="grid grid-cols-1">
+            <Metric value={item.classrooms} label="Derslik" gold />
           </div>
         ) : (
-          <p className="font-headline text-lg md:text-xl font-bold leading-snug text-on-surface">{item.note}</p>
+          <p className="py-2 text-center font-headline text-base font-bold text-primary">{item.note}</p>
         )}
-      </div>
 
-      {/* İkincil bilgiler */}
-      {hasSecondary && (
-        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-outline-variant/20 pt-3 font-body text-xs text-on-surface-variant">
-          {item.blocks ? (
-            <span><b className="font-bold text-on-surface">{item.blocks}</b> Blok</span>
-          ) : null}
-          {item.blocks && item.commercial ? <span className="text-outline-variant/60">·</span> : null}
-          {item.commercial ? (
-            <span><b className="font-bold text-on-surface">{item.commercial}</b> Ticari</span>
-          ) : null}
-          {heroValue && item.note ? (
-            <span className="inline-flex items-center gap-1 text-primary">
-              <MaterialIcon icon="add_circle" size={12} />
-              {item.note}
-            </span>
-          ) : null}
-          {item.types ? (
-            <span className="ml-auto rounded-md bg-primary/8 px-2 py-0.5 font-bold tracking-wide text-primary">
+        {/* Alt bilgi — sabit yükseklik → hizalı */}
+        <div className="mt-4 flex min-h-[1.75rem] flex-wrap items-center justify-center gap-2 border-t border-outline-variant/15 pt-3">
+          {item.types && (
+            <span className="rounded-md bg-primary/8 px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-primary">
               {item.types}
             </span>
-          ) : null}
+          )}
+          {item.note && (numeric || item.classrooms) && (
+            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-on-surface-variant">
+              <MaterialIcon icon="add" size={12} className="text-primary/70" />
+              {item.note}
+            </span>
+          )}
+          {!footer && <span className="text-[11px] text-transparent">.</span>}
         </div>
-      )}
+      </div>
     </SpotlightCard>
   )
 }
@@ -97,7 +99,10 @@ export default function CategorySection({ category, index }: Props) {
           </span>
         </Reveal>
 
-        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6" stagger={0.06}>
+        <StaggerContainer
+          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5"
+          stagger={0.05}
+        >
           {category.items.map((item) => (
             <StaggerItem key={item.name} className="flex">
               <Card item={item} icon={category.icon} />

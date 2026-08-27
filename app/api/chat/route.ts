@@ -15,7 +15,7 @@ const SYSTEM_PROMPT = `Sen EKİNCİ GROUP İNŞAAT'ın resmi dijital asistanıs�
 - Slogan: "Kalite, Güven, Gelecek"
 - Telefon: +90 545 735 91 23
 - E-posta: info@ekincigroup.com
-- Rakamlar: 55+ yıllık deneyim, 2.000+ tamamlanan daire, 50+ proje
+- Rakamlar: 55+ yıllık deneyim, 3.200+ tamamlanan daire, 50+ tamamlanan proje, 540 bin+ m² tamamlanan inşaat, 116 bin+ m² devam eden inşaat
 - Faaliyet bölgeleri: Ankara, İstanbul, Siirt
 
 === PROJELER ===
