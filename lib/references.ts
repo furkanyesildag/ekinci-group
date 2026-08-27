@@ -10,8 +10,9 @@ export interface RefItem {
   blocks?: number
   units?: number       // daire
   commercial?: number  // ticari alan / ünite
+  classrooms?: number  // derslik (eğitim)
   types?: string       // "3+1, 4+1"
-  note?: string        // "24 derslikli okul", "+1 Cami", "Kızılay Binası" vb.
+  note?: string        // "+1 Cami", "Kızılay Binası", "İş atölyesi" vb.
 }
 
 export interface RefCategory {
@@ -46,8 +47,8 @@ export const REF_CATEGORIES: RefCategory[] = [
     icon: 'location_city',
     items: [
       { name: 'Muş / Merkez TOKİ', location: 'Muş', units: 150 },
-      { name: 'Muş / Varto TOKİ', location: 'Muş', units: 80, note: 'Ticari alan dahil' },
-      { name: 'Iğdır / Tuzla TOKİ', location: 'Iğdır', units: 80, commercial: 90, note: '+1 Cami' },
+      { name: 'Muş / Varto TOKİ', location: 'Muş', units: 80, note: 'Ticari alan' },
+      { name: 'Iğdır / Tuzla TOKİ', location: 'Iğdır', units: 80, commercial: 90, note: '1 Cami' },
     ],
   },
   {
@@ -55,7 +56,7 @@ export const REF_CATEGORIES: RefCategory[] = [
     title: 'Rezidans ve Ofis Projeleri',
     icon: 'corporate_fare',
     items: [
-      { name: 'Ekinci Plaza', units: 14, commercial: 3, note: 'Ticari ofis' },
+      { name: 'Ekinci Plaza', units: 14, commercial: 3 },
       { name: 'Ekinci Rezidance', units: 35, commercial: 2, types: '1+1' },
       { name: 'İstanbul / Fatih', location: 'İstanbul', units: 20, types: '3+1' },
       { name: 'İstanbul / Esenler', location: 'İstanbul', units: 24, commercial: 4, types: '3+1' },
@@ -68,12 +69,12 @@ export const REF_CATEGORIES: RefCategory[] = [
     title: 'Eğitim Kurumları',
     icon: 'school',
     items: [
-      { name: 'Siirt Türk Telekom Fen Lisesi', location: 'Siirt', note: '24 derslikli okul' },
-      { name: 'Siirt Türk Telekom Rehabilitasyon Okulu', location: 'Siirt' },
-      { name: 'Batman / Gerçüş', location: 'Batman', note: '24 derslikli okul' },
-      { name: 'Gaziantep Türk Telekom Fen Lisesi', location: 'Gaziantep', note: '24 derslikli okul' },
-      { name: 'Muş / Merkez', location: 'Muş', note: '24 derslikli okul ve iş atölyesi' },
-      { name: 'Hatay / Merkez', location: 'Hatay', note: '24 derslikli okul' },
+      { name: 'Siirt Türk Telekom Fen Lisesi', location: 'Siirt', classrooms: 24 },
+      { name: 'Siirt Türk Telekom Rehabilitasyon Okulu', location: 'Siirt', note: 'Rehabilitasyon Okulu' },
+      { name: 'Batman / Gerçüş', location: 'Batman', classrooms: 24 },
+      { name: 'Gaziantep Türk Telekom Fen Lisesi', location: 'Gaziantep', classrooms: 24 },
+      { name: 'Muş / Merkez', location: 'Muş', classrooms: 24, note: 'İş atölyesi dahil' },
+      { name: 'Hatay / Merkez', location: 'Hatay', classrooms: 24 },
     ],
   },
 ]

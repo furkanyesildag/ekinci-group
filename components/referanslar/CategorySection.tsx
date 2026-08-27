@@ -1,6 +1,7 @@
 import type { RefCategory, RefItem } from '@/lib/references'
 import SectionLabel from '@/components/ui/SectionLabel'
 import MaterialIcon from '@/components/ui/MaterialIcon'
+import AnimatedCounter from '@/components/ui/motion/AnimatedCounter'
 import Reveal from '@/components/ui/motion/Reveal'
 import SpotlightCard from '@/components/ui/motion/SpotlightCard'
 import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
@@ -10,47 +11,69 @@ interface Props {
   index: number
 }
 
-function Pill({ icon, children }: { icon: string; children: React.ReactNode }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 rounded-lg bg-primary/8 px-2.5 py-1 text-[11px] font-semibold text-primary font-body">
-      <MaterialIcon icon={icon} size={13} className="text-primary/80" />
-      {children}
-    </span>
-  )
-}
-
 function Card({ item, icon }: { item: RefItem; icon: string }) {
-  const hasStats = item.blocks || item.units || item.commercial
+  // Başrol sayı: daire → derslik → (yoksa) not metni
+  const heroValue = item.units ?? item.classrooms
+  const heroLabel = item.units ? 'Daire' : item.classrooms ? 'Derslik' : ''
+  const hasSecondary = Boolean(item.blocks || item.commercial || item.types || (heroValue && item.note))
+
   return (
-    <SpotlightCard className="group h-full rounded-2xl border border-outline-variant/25 bg-surface-container-lowest p-6 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-ambient-xl">
-      <div className="flex items-start gap-3.5">
-        <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary group-hover:text-on-primary">
-          <MaterialIcon icon={icon} size={22} className="text-primary transition-colors duration-300 group-hover:text-on-primary" />
+    <SpotlightCard className="group flex h-full flex-col rounded-2xl border border-outline-variant/25 bg-surface-container-lowest p-5 md:p-6 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-ambient-xl">
+      {/* Başlık */}
+      <div className="flex items-center gap-3">
+        <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
+          <MaterialIcon icon={icon} size={20} className="text-primary transition-colors duration-300 group-hover:text-on-primary" />
         </div>
         <div className="min-w-0">
-          <h3 className="font-headline text-lg font-bold leading-snug text-on-surface">{item.name}</h3>
+          <h3 className="font-headline text-[15px] md:text-base font-bold leading-tight text-on-surface">{item.name}</h3>
           {item.location && (
-            <p className="mt-0.5 flex items-center gap-1 font-body text-xs text-on-surface-variant">
-              <MaterialIcon icon="location_on" size={13} className="text-primary/70" />
+            <p className="mt-0.5 flex items-center gap-1 font-body text-[11px] text-on-surface-variant">
+              <MaterialIcon icon="location_on" size={12} className="text-primary/70" />
               {item.location}
             </p>
           )}
         </div>
       </div>
 
-      {(hasStats || item.note) && (
-        <div className="mt-4 flex flex-wrap gap-2">
-          {item.blocks ? <Pill icon="apartment">{item.blocks} Blok</Pill> : null}
-          {item.units ? <Pill icon="meeting_room">{item.units} Daire</Pill> : null}
-          {item.commercial ? <Pill icon="storefront">{item.commercial} Ticari</Pill> : null}
-          {item.note ? <Pill icon="check_circle">{item.note}</Pill> : null}
-        </div>
-      )}
+      {/* Başrol sayı */}
+      <div className="mt-4 flex flex-1 flex-col justify-end">
+        {heroValue ? (
+          <div>
+            <AnimatedCounter
+              value={String(heroValue)}
+              className="block font-headline text-[2.75rem] leading-none md:text-6xl font-bold tracking-tight text-primary"
+            />
+            <span className="mt-1.5 block font-body text-[10px] md:text-[11px] font-bold uppercase tracking-[0.16em] text-primary/60">
+              {heroLabel}
+            </span>
+          </div>
+        ) : (
+          <p className="font-headline text-lg md:text-xl font-bold leading-snug text-on-surface">{item.note}</p>
+        )}
+      </div>
 
-      {item.types && (
-        <p className="mt-3 font-body text-[11px] font-bold uppercase tracking-[0.12em] text-on-surface-variant/70">
-          {item.types}
-        </p>
+      {/* İkincil bilgiler */}
+      {hasSecondary && (
+        <div className="mt-4 flex flex-wrap items-center gap-x-3 gap-y-1.5 border-t border-outline-variant/20 pt-3 font-body text-xs text-on-surface-variant">
+          {item.blocks ? (
+            <span><b className="font-bold text-on-surface">{item.blocks}</b> Blok</span>
+          ) : null}
+          {item.blocks && item.commercial ? <span className="text-outline-variant/60">·</span> : null}
+          {item.commercial ? (
+            <span><b className="font-bold text-on-surface">{item.commercial}</b> Ticari</span>
+          ) : null}
+          {heroValue && item.note ? (
+            <span className="inline-flex items-center gap-1 text-primary">
+              <MaterialIcon icon="add_circle" size={12} />
+              {item.note}
+            </span>
+          ) : null}
+          {item.types ? (
+            <span className="ml-auto rounded-md bg-primary/8 px-2 py-0.5 font-bold tracking-wide text-primary">
+              {item.types}
+            </span>
+          ) : null}
+        </div>
       )}
     </SpotlightCard>
   )
@@ -74,7 +97,7 @@ export default function CategorySection({ category, index }: Props) {
           </span>
         </Reveal>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6" stagger={0.07}>
+        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6" stagger={0.06}>
           {category.items.map((item) => (
             <StaggerItem key={item.name} className="flex">
               <Card item={item} icon={category.icon} />
