@@ -1,8 +1,8 @@
 import type { RefCategory, RefItem } from '@/lib/references'
 import SectionLabel from '@/components/ui/SectionLabel'
 import MaterialIcon from '@/components/ui/MaterialIcon'
+import AnimatedCounter from '@/components/ui/motion/AnimatedCounter'
 import Reveal from '@/components/ui/motion/Reveal'
-import SpotlightCard from '@/components/ui/motion/SpotlightCard'
 import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
 
 interface Props {
@@ -10,74 +10,61 @@ interface Props {
   index: number
 }
 
-const DASH = '–'
-
-function Metric({ value, label, gold = false }: { value: string | number; label: string; gold?: boolean }) {
-  return (
-    <div className="flex flex-col items-center justify-center px-1 text-center">
-      <span
-        className={`font-headline text-xl md:text-[1.7rem] font-bold leading-none tracking-tight ${
-          gold ? 'text-primary' : value === DASH ? 'text-outline-variant/50' : 'text-on-surface'
-        }`}
-      >
-        {value}
-      </span>
-      <span className="mt-1.5 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.1em] text-on-surface-variant/70">
-        {label}
-      </span>
-    </div>
-  )
-}
-
 function Card({ item, icon }: { item: RefItem; icon: string }) {
-  const numeric = Boolean(item.blocks || item.units || item.commercial)
-  const footer = item.types || (item.note && (numeric || item.classrooms))
+  // Başrol sayı: daire → derslik
+  const heroValue = item.units ?? item.classrooms
+  const heroLabel = item.units ? 'Daire' : item.classrooms ? 'Derslik' : ''
+
+  // İkincil satır
+  const parts: string[] = []
+  if (item.blocks) parts.push(`${item.blocks} Blok`)
+  if (item.commercial) parts.push(`${item.commercial} Ticari`)
+  if (item.note && heroValue) parts.push(item.note)
+  const secondary = parts.join(' · ')
 
   return (
-    <SpotlightCard className="group flex h-full flex-col rounded-2xl border border-outline-variant/25 bg-surface-container-lowest p-5 shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:shadow-ambient-xl">
-      {/* Başlık — sabit yükseklik (2 satır) → tüm kartlar hizalı */}
-      <div className="flex items-start gap-2.5">
-        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-primary/10 transition-colors duration-300 group-hover:bg-primary">
-          <MaterialIcon icon={icon} size={18} className="text-primary transition-colors duration-300 group-hover:text-on-primary" />
-        </div>
-        <h3 className="font-headline text-[13px] md:text-sm font-bold leading-snug text-on-surface line-clamp-2 min-h-[2.4em]">
-          {item.name}
-        </h3>
-      </div>
+    <div className="group flex h-full flex-col items-center rounded-2xl bg-surface-container-lowest p-6 text-center shadow-ambient-xl transition-all duration-300 hover:-translate-y-1.5">
+      <MaterialIcon
+        icon={icon}
+        size={28}
+        fill
+        weight={300}
+        className="text-primary transition-transform duration-300 group-hover:scale-110"
+      />
 
-      {/* Sayılar — kartın altına hizalı */}
-      <div className="mt-auto pt-5">
-        {numeric ? (
-          <div className="grid grid-cols-3 divide-x divide-outline-variant/20">
-            <Metric value={item.blocks ?? DASH} label="Blok" />
-            <Metric value={item.units ?? DASH} label="Daire" gold />
-            <Metric value={item.commercial ?? DASH} label="Ticari" />
-          </div>
-        ) : item.classrooms ? (
-          <div className="grid grid-cols-1">
-            <Metric value={item.classrooms} label="Derslik" gold />
-          </div>
+      <h3 className="mt-4 font-headline text-[15px] md:text-base font-bold leading-snug text-on-surface line-clamp-2 min-h-[2.6em]">
+        {item.name}
+      </h3>
+
+      {/* Sayı */}
+      <div className="mt-3">
+        {heroValue ? (
+          <>
+            <AnimatedCounter
+              value={String(heroValue)}
+              className="block font-headline text-4xl md:text-5xl font-bold tracking-tight text-primary leading-none"
+            />
+            <span className="mt-1.5 block text-[10px] md:text-[11px] font-bold uppercase tracking-[0.16em] text-on-surface-variant">
+              {heroLabel}
+            </span>
+          </>
         ) : (
-          <p className="py-2 text-center font-headline text-base font-bold text-primary">{item.note}</p>
+          <span className="font-headline text-lg font-bold text-on-surface">{item.note}</span>
         )}
-
-        {/* Alt bilgi — sabit yükseklik → hizalı */}
-        <div className="mt-4 flex min-h-[1.75rem] flex-wrap items-center justify-center gap-2 border-t border-outline-variant/15 pt-3">
-          {item.types && (
-            <span className="rounded-md bg-primary/8 px-2.5 py-0.5 text-[11px] font-bold tracking-wide text-primary">
-              {item.types}
-            </span>
-          )}
-          {item.note && (numeric || item.classrooms) && (
-            <span className="inline-flex items-center gap-1 text-[11px] font-semibold text-on-surface-variant">
-              <MaterialIcon icon="add" size={12} className="text-primary/70" />
-              {item.note}
-            </span>
-          )}
-          {!footer && <span className="text-[11px] text-transparent">.</span>}
-        </div>
       </div>
-    </SpotlightCard>
+
+      {/* İkincil + tip — alta hizalı */}
+      <div className="mt-auto flex w-full flex-col items-center gap-2 pt-5">
+        {secondary && (
+          <p className="font-body text-xs text-on-surface-variant">{secondary}</p>
+        )}
+        {item.types && (
+          <span className="rounded-md bg-primary/8 px-2.5 py-0.5 font-body text-[11px] font-bold tracking-wide text-primary">
+            {item.types}
+          </span>
+        )}
+      </div>
+    </div>
   )
 }
 
@@ -100,8 +87,8 @@ export default function CategorySection({ category, index }: Props) {
         </Reveal>
 
         <StaggerContainer
-          className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-5"
-          stagger={0.05}
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
+          stagger={0.06}
         >
           {category.items.map((item) => (
             <StaggerItem key={item.name} className="flex">
