@@ -5,7 +5,6 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback } from 'react'
 import type { ProjectStatus } from '@/types'
-import { getHomeHeroSliderProjects } from '@/lib/projects'
 import { publicImage } from '@/lib/publicImage'
 import Badge from '@/components/ui/Badge'
 import MaterialIcon from '@/components/ui/MaterialIcon'
@@ -20,25 +19,47 @@ type HeroSlide = {
   heroImage: { src: string; alt: string }
   /** Tıklanınca gidilecek özel bağlantı (proje değilse) */
   link?: string
+  /** Marka görseli — sol alttaki proje kartı gösterilmez */
+  hideCard?: boolean
 }
 
-// Slider'ın ilk karesi: Öztatlı Konutları gece görseli (dosya: public/images/hero-gece.jpg)
-const SHOWCASE: HeroSlide = {
-  slug: 'oztatli-konutlari',
-  name: 'Öztatlı Konutları',
-  location: 'Siirt',
-  status: 'TAMAMLANDI',
-  heroImage: {
-    src: publicImage('hero-gece.jpg'),
-    alt: 'Öztatlı Konutları — aydınlatılmış konut projesi gece görünümü',
-  },
-  link: '/projeler/oztatli-konutlari',
-}
-
-// Showcase Öztatlı'yı temsil ettiği için gündüz Öztatlı karesini listeden çıkarıyoruz (tekrar olmasın)
+// Küratörlü premium hero: gerçek gece fotoğrafı + iki sinematik marka render'ı
 const SLIDES: HeroSlide[] = [
-  SHOWCASE,
-  ...getHomeHeroSliderProjects().filter(p => p.slug !== 'oztatli-konutlari'),
+  {
+    slug: 'oztatli-konutlari',
+    name: 'Öztatlı Konutları',
+    location: 'Siirt',
+    status: 'TAMAMLANDI',
+    heroImage: {
+      src: publicImage('hero-gece.jpg'),
+      alt: 'Öztatlı Konutları — aydınlatılmış konut projesi gece görünümü',
+    },
+    link: '/projeler/oztatli-konutlari',
+  },
+  {
+    slug: 'brand-vizyon',
+    name: 'EKİNCİ GROUP',
+    location: 'Türkiye',
+    status: 'TAMAMLANDI',
+    heroImage: {
+      src: publicImage('hero-kurumsal.jpg'),
+      alt: 'EKİNCİ GROUP — gün batımında modern yaşam',
+    },
+    link: '/projeler',
+    hideCard: true,
+  },
+  {
+    slug: 'brand-yasam',
+    name: 'EKİNCİ GROUP',
+    location: 'Türkiye',
+    status: 'TAMAMLANDI',
+    heroImage: {
+      src: publicImage('hero-yasam.jpg'),
+      alt: 'EKİNCİ GROUP — peyzaj ve sosyal yaşam alanları',
+    },
+    link: '/projeler',
+    hideCard: true,
+  },
 ]
 
 const slideHref = (s: HeroSlide) => s.link ?? `/projeler/${s.slug}`
@@ -202,24 +223,26 @@ export default function HeroSlider() {
         </div>
       </div>
 
-      {/* ── AKTİF PROJE KARTI (sol alt) ── */}
-      <div className="absolute left-4 lg:left-10 bottom-24 z-20 pointer-events-auto hidden sm:block">
-        <Link href={slideHref(slide)}
-          className="group flex items-center gap-4 bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4 hover:bg-black/50 transition-all duration-300 max-w-xs">
-          <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
-            <Image src={slide.heroImage.src} alt={slide.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="56px" />
-          </div>
-          <div>
-            <Badge status={slide.status} className="mb-1.5" />
-            <p className="font-headline text-sm font-bold text-white leading-tight">{slide.name}</p>
-            <p className="text-[11px] text-white/60 font-body flex items-center gap-1 mt-0.5">
-              <MaterialIcon icon="location_on" size={12} className="text-primary-fixed" />
-              {slide.location}
-            </p>
-          </div>
-          <MaterialIcon icon="arrow_forward" size={18} className="text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all duration-300 ml-auto" />
-        </Link>
-      </div>
+      {/* ── AKTİF PROJE KARTI (sol alt) — yalnızca gerçek proje slaytlarında ── */}
+      {!slide.hideCard && (
+        <div className="absolute left-4 lg:left-10 bottom-24 z-20 pointer-events-auto hidden sm:block">
+          <Link href={slideHref(slide)}
+            className="group flex items-center gap-4 bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4 hover:bg-black/50 transition-all duration-300 max-w-xs">
+            <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
+              <Image src={slide.heroImage.src} alt={slide.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="56px" />
+            </div>
+            <div>
+              <Badge status={slide.status} className="mb-1.5" />
+              <p className="font-headline text-sm font-bold text-white leading-tight">{slide.name}</p>
+              <p className="text-[11px] text-white/60 font-body flex items-center gap-1 mt-0.5">
+                <MaterialIcon icon="location_on" size={12} className="text-primary-fixed" />
+                {slide.location}
+              </p>
+            </div>
+            <MaterialIcon icon="arrow_forward" size={18} className="text-white/40 group-hover:text-white group-hover:translate-x-1 transition-all duration-300 ml-auto" />
+          </Link>
+        </div>
+      )}
 
       {/* ── PREV / NEXT ── */}
       <div className="absolute right-4 lg:right-10 bottom-24 z-20 flex gap-2 pointer-events-auto">
