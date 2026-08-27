@@ -4,13 +4,44 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useState, useEffect, useRef, useCallback } from 'react'
+import type { ProjectStatus } from '@/types'
 import { getHomeHeroSliderProjects } from '@/lib/projects'
+import { publicImage } from '@/lib/publicImage'
 import Badge from '@/components/ui/Badge'
 import MaterialIcon from '@/components/ui/MaterialIcon'
 import ShimmerButton from '@/components/ui/motion/ShimmerButton'
 import Magnetic from '@/components/ui/motion/Magnetic'
 
-const SLIDES = getHomeHeroSliderProjects()
+type HeroSlide = {
+  slug: string
+  name: string
+  location: string
+  status: ProjectStatus
+  heroImage: { src: string; alt: string }
+  /** Tıklanınca gidilecek özel bağlantı (proje değilse) */
+  link?: string
+}
+
+// Slider'ın ilk karesi: Öztatlı Konutları gece görseli (dosya: public/images/hero-gece.jpg)
+const SHOWCASE: HeroSlide = {
+  slug: 'oztatli-konutlari',
+  name: 'Öztatlı Konutları',
+  location: 'Siirt',
+  status: 'TAMAMLANDI',
+  heroImage: {
+    src: publicImage('hero-gece.jpg'),
+    alt: 'Öztatlı Konutları — aydınlatılmış konut projesi gece görünümü',
+  },
+  link: '/projeler/oztatli-konutlari',
+}
+
+// Showcase Öztatlı'yı temsil ettiği için gündüz Öztatlı karesini listeden çıkarıyoruz (tekrar olmasın)
+const SLIDES: HeroSlide[] = [
+  SHOWCASE,
+  ...getHomeHeroSliderProjects().filter(p => p.slug !== 'oztatli-konutlari'),
+]
+
+const slideHref = (s: HeroSlide) => s.link ?? `/projeler/${s.slug}`
 
 const AUTO_PLAY_MS = 6000
 
@@ -73,10 +104,10 @@ export default function HeroSlider() {
     setDragDeltaX(0)
   }
 
-  // Slayta tıklandığında proje detayına git (sürükleme değilse)
-  const handleSlideClick = (slug: string) => {
+  // Slayta tıklandığında proje detayına (veya showcase bağlantısına) git (sürükleme değilse)
+  const handleSlideClick = (href: string) => {
     if (Math.abs(dragDeltaX) > 10) return
-    router.push(`/projeler/${slug}`)
+    router.push(href)
   }
 
   if (SLIDES.length === 0) {
@@ -110,7 +141,7 @@ export default function HeroSlider() {
         onTouchStart={onTouchStart}
         onTouchMove={onTouchMove}
         onTouchEnd={onTouchEnd}
-        onClick={() => handleSlideClick(slide.slug)}
+        onClick={() => handleSlideClick(slideHref(slide))}
       >
         {SLIDES.map((s, i) => (
           <div
@@ -168,7 +199,7 @@ export default function HeroSlider() {
 
       {/* ── AKTİF PROJE KARTI (sol alt) ── */}
       <div className="absolute left-4 lg:left-10 bottom-24 z-20 pointer-events-auto hidden sm:block">
-        <Link href={`/projeler/${slide.slug}`}
+        <Link href={slideHref(slide)}
           className="group flex items-center gap-4 bg-black/30 backdrop-blur-md border border-white/10 rounded-2xl px-5 py-4 hover:bg-black/50 transition-all duration-300 max-w-xs">
           <div className="relative w-14 h-14 rounded-xl overflow-hidden shrink-0">
             <Image src={slide.heroImage.src} alt={slide.name} fill className="object-cover group-hover:scale-110 transition-transform duration-500" sizes="56px" />
