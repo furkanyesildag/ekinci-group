@@ -1,9 +1,6 @@
 import type { RefCategory, RefItem } from '@/lib/references'
 import SectionLabel from '@/components/ui/SectionLabel'
 import MaterialIcon from '@/components/ui/MaterialIcon'
-import AnimatedCounter from '@/components/ui/motion/AnimatedCounter'
-import Reveal from '@/components/ui/motion/Reveal'
-import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
 
 interface Props {
   category: RefCategory
@@ -11,11 +8,9 @@ interface Props {
 }
 
 function Card({ item, icon }: { item: RefItem; icon: string }) {
-  // Başrol sayı: daire → derslik
   const heroValue = item.units ?? item.classrooms
   const heroLabel = item.units ? 'Daire' : item.classrooms ? 'Derslik' : ''
 
-  // İkincil satır
   const parts: string[] = []
   if (item.blocks) parts.push(`${item.blocks} Blok`)
   if (item.commercial) parts.push(`${item.commercial} Ticari`)
@@ -36,14 +31,12 @@ function Card({ item, icon }: { item: RefItem; icon: string }) {
         {item.name}
       </h3>
 
-      {/* Sayı */}
       <div className="mt-3">
         {heroValue ? (
           <>
-            <AnimatedCounter
-              value={String(heroValue)}
-              className="block font-headline text-4xl md:text-5xl font-bold tracking-tight text-primary leading-none"
-            />
+            <span className="block font-headline text-4xl md:text-5xl font-bold leading-none tracking-tight text-primary">
+              {heroValue}
+            </span>
             <span className="mt-1.5 block text-[10px] md:text-[11px] font-bold uppercase tracking-[0.16em] text-on-surface-variant">
               {heroLabel}
             </span>
@@ -53,11 +46,8 @@ function Card({ item, icon }: { item: RefItem; icon: string }) {
         )}
       </div>
 
-      {/* İkincil + tip — alta hizalı */}
       <div className="mt-auto flex w-full flex-col items-center gap-2 pt-5">
-        {secondary && (
-          <p className="font-body text-xs text-on-surface-variant">{secondary}</p>
-        )}
+        {secondary && <p className="font-body text-xs text-on-surface-variant">{secondary}</p>}
         {item.types && (
           <span className="rounded-md bg-primary/8 px-2.5 py-0.5 font-body text-[11px] font-bold tracking-wide text-primary">
             {item.types}
@@ -73,7 +63,7 @@ export default function CategorySection({ category, index }: Props) {
   return (
     <section className={alt ? 'bg-surface-container py-14 md:py-20' : 'py-14 md:py-20'}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Reveal className="mb-8 md:mb-12 flex items-end justify-between gap-4">
+        <div className="mb-8 md:mb-12 flex items-end justify-between gap-4">
           <div>
             <SectionLabel>{`0${index + 1}`.slice(-2)} — Referans</SectionLabel>
             <h2 className="font-headline text-3xl md:text-4xl font-bold tracking-tighter text-on-surface">
@@ -84,18 +74,13 @@ export default function CategorySection({ category, index }: Props) {
             <MaterialIcon icon={category.icon} size={16} className="text-primary" />
             {category.items.length} proje
           </span>
-        </Reveal>
+        </div>
 
-        <StaggerContainer
-          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
-          stagger={0.05}
-        >
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4">
           {category.items.map((item) => (
-            <StaggerItem key={item.name} className="flex">
-              <Card item={item} icon={category.icon} />
-            </StaggerItem>
+            <Card key={item.name} item={item} icon={category.icon} />
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   )
