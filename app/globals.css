@@ -7,6 +7,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
+    /* Yatay lastik-bant kaydırmayı ve kenarlarda beyaz boşluğu engeller */
+    overscroll-behavior-x: none;
+    background-color: #faf9f6;
   }
   body {
     font-family: 'Manrope', sans-serif;
@@ -15,6 +19,10 @@
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden;
+    overscroll-behavior-x: none;
+    width: 100%;
+    max-width: 100%;
+    position: relative;
   }
   ::selection {
     background-color: #fbd092;

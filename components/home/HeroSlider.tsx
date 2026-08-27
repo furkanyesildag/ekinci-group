@@ -21,6 +21,8 @@ type HeroSlide = {
   link?: string
   /** Marka görseli — sol alttaki proje kartı gösterilmez */
   hideCard?: boolean
+  /** object-position — mobil dik kırpmada görselin odak noktası */
+  focus?: string
 }
 
 // Küratörlü premium hero: gerçek gece fotoğrafı + iki sinematik marka render'ı
@@ -35,6 +37,7 @@ const SLIDES: HeroSlide[] = [
       alt: 'Öztatlı Konutları — aydınlatılmış konut projesi gece görünümü',
     },
     link: '/projeler/oztatli-konutlari',
+    focus: '50% 50%',
   },
   {
     slug: 'brand-vizyon',
@@ -47,6 +50,8 @@ const SLIDES: HeroSlide[] = [
     },
     link: '/projeler',
     hideCard: true,
+    // Bina sağda; mobil dik kırpmada binayı ve altın gökyüzünü öne al
+    focus: '78% 45%',
   },
   {
     slug: 'brand-yasam',
@@ -59,6 +64,8 @@ const SLIDES: HeroSlide[] = [
     },
     link: '/projeler',
     hideCard: true,
+    // Bina ve peyzajı öne al (üst-orta)
+    focus: '58% 38%',
   },
 ]
 
@@ -176,6 +183,7 @@ export default function HeroSlider() {
               fill
               priority={i === 0}
               className={`object-cover transition-transform duration-[8000ms] ease-linear ${i === current ? 'scale-110' : 'scale-100'}`}
+              style={{ objectPosition: s.focus ?? '50% 50%' }}
               sizes="100vw"
               draggable={false}
             />
