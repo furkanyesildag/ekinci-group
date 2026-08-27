@@ -23,7 +23,7 @@ function Card({ item, icon }: { item: RefItem; icon: string }) {
   const secondary = parts.join(' · ')
 
   return (
-    <div className="group flex h-full flex-col items-center rounded-2xl bg-surface-container-lowest p-6 text-center shadow-ambient-xl transition-all duration-300 hover:-translate-y-1.5">
+    <div className="group flex h-full min-h-[13rem] flex-col items-center rounded-2xl border border-outline-variant/40 bg-surface-container-lowest p-5 text-center shadow-ambient transition-all duration-300 hover:-translate-y-1 hover:border-primary/30 hover:shadow-ambient-xl">
       <MaterialIcon
         icon={icon}
         size={28}
@@ -87,8 +87,8 @@ export default function CategorySection({ category, index }: Props) {
         </Reveal>
 
         <StaggerContainer
-          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-6"
-          stagger={0.06}
+          className="grid grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4"
+          stagger={0.05}
         >
           {category.items.map((item) => (
             <StaggerItem key={item.name} className="flex">

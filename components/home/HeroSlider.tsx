@@ -278,28 +278,6 @@ export default function HeroSlider() {
         ))}
       </div>
 
-      {/* ── OTOMATİK OYNATMA İLERLEME ÇUBUĞU ── */}
-      {!paused && (
-        <div className="absolute bottom-0 left-0 z-20 h-0.5 bg-primary/60 pointer-events-none"
-          style={{
-            width: '100%',
-            animation: `progressBar ${AUTO_PLAY_MS}ms linear`,
-            animationFillMode: 'forwards',
-          }}
-        />
-      )}
-
-      {/* Scroll cue */}
-      <div className="absolute bottom-16 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1 text-white/35 pointer-events-none">
-        <span className="w-px h-8 bg-gradient-to-b from-white/30 to-transparent" />
-      </div>
-
-      <style jsx>{`
-        @keyframes progressBar {
-          from { transform: scaleX(0); transform-origin: left; }
-          to   { transform: scaleX(1); transform-origin: left; }
-        }
-      `}</style>
     </section>
   )
 }
