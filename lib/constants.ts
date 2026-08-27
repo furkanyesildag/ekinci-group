@@ -3,6 +3,7 @@ import { publicImage } from '@/lib/publicImage'
 
 export const NAV_LINKS: NavLink[] = [
   { label: 'Projeler', href: '/projeler' },
+  { label: 'Referanslar', href: '/referanslar' },
   { label: 'Kurumsal', href: '/kurumsal' },
   { label: 'İletişim', href: '/iletisim' },
 ]

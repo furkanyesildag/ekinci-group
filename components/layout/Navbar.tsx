@@ -21,7 +21,7 @@ export default function Navbar() {
 
   // Hero sayfalarında navbar transparan + beyaz logo; scroll sonrası glass + koyu logo
   // (proje detay sayfaları /projeler/... da koyu hero'ya sahip → dahil edildi)
-  const isHeroPage = pathname === '/' || pathname.startsWith('/projeler') || pathname === '/kurumsal' || pathname === '/iletisim'
+  const isHeroPage = pathname === '/' || pathname.startsWith('/projeler') || pathname === '/referanslar' || pathname === '/kurumsal' || pathname === '/iletisim'
   const logoLight = isHeroPage && !scrolled
 
   return (
