@@ -162,8 +162,13 @@ export default function HeroSlider() {
         ))}
       </div>
 
-      {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-on-surface/55 via-on-surface/20 to-on-surface/65 z-10 pointer-events-none" />
+      {/* Gradient overlays — parlak gündüz görsellerinde bile başlık okunur kalsın */}
+      <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/35 to-black/70 z-10 pointer-events-none" />
+      {/* Merkez vinyet: yazının arkasını koyulaştırır, kenarlarda görsel açık kalır */}
+      <div
+        className="absolute inset-0 z-10 pointer-events-none"
+        style={{ background: 'radial-gradient(ellipse 75% 60% at 50% 42%, rgba(0,0,0,0.55), rgba(0,0,0,0.12) 62%, transparent 78%)' }}
+      />
       <div className="absolute inset-x-0 bottom-0 h-44 bg-gradient-to-t from-surface to-transparent z-10 pointer-events-none" />
 
       {/* ── ANA İÇERİK — saf CSS giriş (mobilde güvenli, JS beklemez) ── */}

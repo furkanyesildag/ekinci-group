@@ -7,13 +7,13 @@ import { StaggerContainer, StaggerItem } from '@/components/ui/motion/Stagger'
 export default function OfficeCards() {
   return (
     <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 md:-mt-16 relative z-10 pb-4">
-      <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6" stagger={0.12}>
+      <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto" stagger={0.12}>
         {CITY_OFFICES.map(office => (
           <StaggerItem key={office.city} className="bg-surface-container-lowest rounded-3xl overflow-hidden shadow-ambient-xl hover:shadow-ambient-2xl transition-shadow duration-300">
             <SpotlightCard className="group flex h-full flex-col rounded-3xl">
 
               {/* Görsel */}
-              <div className="relative h-48 overflow-hidden shrink-0">
+              <div className="relative h-52 sm:h-60 overflow-hidden shrink-0">
                 <Image
                   src={office.imageUrl}
                   alt={`EKİNCİ GROUP — ${office.city}`}
