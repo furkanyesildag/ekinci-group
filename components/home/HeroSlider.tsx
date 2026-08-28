@@ -25,20 +25,8 @@ type HeroSlide = {
   focus?: string
 }
 
-// Küratörlü premium hero: amiral gemisi Ekinci Prime + Öztatlı gece + marka render'ı
+// Küratörlü premium hero: Öztatlı gece + amiral gemisi Ekinci Prime + marka render'ı
 const SLIDES: HeroSlide[] = [
-  {
-    slug: 'ekinci-prime',
-    name: 'Ekinci Prime',
-    location: 'Siirt',
-    status: 'SATIŞTA',
-    heroImage: {
-      src: publicImage('prime/aerial-gece.jpg'),
-      alt: 'Ekinci Prime — aydınlatılmış konut kompleksi gece kuşbakışı',
-    },
-    link: '/projeler/ekinci-prime',
-    focus: '50% 45%',
-  },
   {
     slug: 'oztatli-konutlari',
     name: 'Öztatlı Konutları',
@@ -50,6 +38,18 @@ const SLIDES: HeroSlide[] = [
     },
     link: '/projeler/oztatli-konutlari',
     focus: '50% 50%',
+  },
+  {
+    slug: 'ekinci-prime',
+    name: 'Ekinci Prime',
+    location: 'Siirt',
+    status: 'SATIŞTA',
+    heroImage: {
+      src: publicImage('prime/aerial-gece.jpg'),
+      alt: 'Ekinci Prime — aydınlatılmış konut kompleksi gece kuşbakışı',
+    },
+    link: '/projeler/ekinci-prime',
+    focus: '50% 45%',
   },
   {
     slug: 'brand-vizyon',

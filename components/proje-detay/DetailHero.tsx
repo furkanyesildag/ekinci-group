@@ -26,6 +26,16 @@ export default function DetailHero({ project }: Props) {
             {project.name}
           </h1>
           <p className="font-headline text-base md:text-xl italic text-primary-fixed/80 max-w-2xl">{project.tagline}</p>
+          {project.catalogUrl && (
+            <a
+              href={project.catalogUrl}
+              download
+              className="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary px-6 py-3.5 font-body text-sm font-semibold text-on-primary shadow-primary transition-all duration-300 hover:bg-primary-dim hover:shadow-primary-lg"
+            >
+              <MaterialIcon icon="download" size={18} className="text-primary-fixed" />
+              Katalog İndir
+            </a>
+          )}
         </div>
       </div>
 

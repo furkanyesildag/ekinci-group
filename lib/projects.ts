@@ -58,7 +58,13 @@ const PROJECTS_DATA: Project[] = [
       { src: img('prime/aerial-aksam.jpg'), alt: 'Ekinci Prime akşam kuşbakışı', label: 'Genel' },
       { src: img('prime/sokak.jpg'), alt: 'Ekinci Prime sokak görünümü', label: 'Cephe' },
       { src: img('prime/cephe.jpg'), alt: 'Ekinci Prime bina cephesi', label: 'Detay' },
+      { src: img('prime/aerial2.jpg'), alt: 'Ekinci Prime kuşbakışı yerleşim', label: 'Yerleşim' },
+      { src: img('prime/avlu2.jpg'), alt: 'Ekinci Prime iç avlu ve sosyal alan', label: 'Sosyal Alan' },
+      { src: img('prime/cephe2.jpg'), alt: 'Ekinci Prime ön cephe', label: 'Ön Cephe' },
+      { src: img('prime/cephe3.jpg'), alt: 'Ekinci Prime yan cephe', label: 'Yan Cephe' },
     ],
+    catalogUrl: '/katalog/ekinci-prime-katalog.pdf',
+    videoUrl: '/images/prime/tanitim.mp4',
     amenities: [
       { icon: 'pool', title: 'Kapalı Yüzme Havuzu', description: 'Dört mevsim kullanım' },
       { icon: 'spa', title: 'Sauna & Türk Hamamı', description: 'Wellness alanları' },

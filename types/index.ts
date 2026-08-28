@@ -41,6 +41,10 @@ export interface Project {
   floorPlans: FloorPlanType[]
   proximity: ProximityPoint[]
   featured: boolean
+  /** Proje kataloğu PDF yolu (opsiyonel) */
+  catalogUrl?: string
+  /** Proje tanıtım videosu yolu (opsiyonel) */
+  videoUrl?: string
 }
 
 export interface OfficeLocation {
