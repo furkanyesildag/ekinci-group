@@ -10,6 +10,7 @@ export const PROJECT_IMAGES = {
 
 /** Sabit liste sırası: projeler sayfası, grid ve öne çıkan bölümler bu düzene göre */
 const PROJECT_SLUG_ORDER: string[] = [
+  'ekinci-prime',
   'oztatli-konutlari',
   'ekinci-royal-park',
   'armada-city',
@@ -30,6 +31,51 @@ function sortProjectList(list: Project[]): Project[] {
 }
 
 const PROJECTS_DATA: Project[] = [
+  {
+    slug: 'ekinci-prime',
+    name: 'Ekinci Prime',
+    location: 'Siirt',
+    city: 'Siirt',
+    status: 'SATIŞTA',
+    category: 'KONUT',
+    year: 2026,
+    tagline: 'Huzurlu bir hayatın içinde, doğru yatırımın merkezinde',
+    description:
+      '13 blok, 217 adet geniş 4+1 daire ve 48 ticari alandan oluşan; kapalı havuz, sauna, Türk hamamı ve fitness gibi ayrıcalıklarıyla öne çıkan amiral gemisi projemiz.',
+    narrative: [
+      'Ekinci Prime; geleneksel yaşam çizgisini modern mimariyle buluşturan, 19.400 m² inşaat alanı ve 13.500 m² yeşil alanıyla ferah bir yaşam sunar.',
+      'Kapalı yüzme havuzu, sauna, Türk hamamı, fitness spor salonu, kitap okuma salonu ve kapalı çocuk oyun alanı gibi sosyal donatılarıyla; kapalı ve açık otopark çözümleriyle konforu bir arada yaşatır.',
+      'Geniş salonları, iki çocuk odası ve ebeveyn banyolu yatak odasıyla tasarlanan 4+1 daireler, aileler için üst düzey bir yaşam standardı hedefler.',
+    ],
+    heroImage: {
+      src: img('prime/hero.jpg'),
+      alt: 'Ekinci Prime — kırmızı cepheli modern konut projesi ve peyzajlı avlu',
+    },
+    galleryImages: [
+      { src: img('prime/aerial-gece.jpg'), alt: 'Ekinci Prime gece kuşbakışı', label: 'Gece' },
+      { src: img('prime/avlu-fiskiye.jpg'), alt: 'Ekinci Prime avlu ve fıskiye', label: 'Avlu' },
+      { src: img('prime/avlu.jpg'), alt: 'Ekinci Prime peyzaj alanı', label: 'Peyzaj' },
+      { src: img('prime/aerial-aksam.jpg'), alt: 'Ekinci Prime akşam kuşbakışı', label: 'Genel' },
+      { src: img('prime/sokak.jpg'), alt: 'Ekinci Prime sokak görünümü', label: 'Cephe' },
+      { src: img('prime/cephe.jpg'), alt: 'Ekinci Prime bina cephesi', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'pool', title: 'Kapalı Yüzme Havuzu', description: 'Dört mevsim kullanım' },
+      { icon: 'spa', title: 'Sauna & Türk Hamamı', description: 'Wellness alanları' },
+      { icon: 'fitness_center', title: 'Fitness Salonu', description: 'Tam donanımlı spor salonu' },
+      { icon: 'local_parking', title: 'Kapalı & Açık Otopark', description: 'Geniş otopark alanı' },
+      { icon: 'child_friendly', title: 'Kapalı Çocuk Oyun Alanı', description: 'Güvenli oyun alanı' },
+      { icon: 'menu_book', title: 'Kitap Okuma Salonu', description: 'Sakin çalışma ortamı' },
+      { icon: 'park', title: '13.500 m² Yeşil Alan', description: 'Geniş peyzaj ve sosyal alan' },
+      { icon: 'storefront', title: '48 Ticari Alan', description: 'Site içi ticari üniteler' },
+    ],
+    floorPlans: [{ label: '4+1 konforlu daireler — 30 m² salon, geniş balkonlar' }],
+    proximity: [
+      { label: 'Konum', distance: 'Merkez', description: 'Veysel Karani Mah., Kurtalan Yolu Cd. No.104' },
+      { label: 'Şehir merkezi', distance: 'Yakın', description: 'Siirt çevre yoluna cepheli' },
+    ],
+    featured: true,
+  },
   {
     slug: 'mar-vista',
     name: 'Mar Vista',
