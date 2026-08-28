@@ -22,7 +22,7 @@ export default function ContactBar() {
           <Link href="/iletisim"
             className="inline-flex items-center gap-1.5 bg-primary text-on-primary text-xs font-bold tracking-wider uppercase px-5 py-3 min-h-[44px] rounded-xl hover:bg-primary-dim transition-all duration-300 shadow-primary">
             <MaterialIcon icon="mail" size={16} />
-            Portföy Talep Et
+            İletişime Geç
           </Link>
         </div>
       </div>
