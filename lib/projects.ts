@@ -122,7 +122,7 @@ const PROJECTS_DATA: Project[] = [
       { icon: 'park', title: 'Peyzaj & Yeşil Alan', description: 'Düzenli bahçe ve sosyal alan' },
       { icon: 'location_city', title: 'Merkezi Konum', description: 'Ankara’da şehirle iç içe' },
     ],
-    floorPlans: [{ label: 'Müstakil villalar ve rezidans daireleri' }],
+    floorPlans: [{ label: 'Müstakil villalar ve 4+1 daireler' }],
     proximity: [
       { label: 'Konum', distance: 'Ankara', description: 'Şehir içinde, ana ulaşım akslarına yakın' },
       { label: 'Çevre', distance: 'Yakın', description: 'Yeşil alanlar ve sosyal olanaklar' },
