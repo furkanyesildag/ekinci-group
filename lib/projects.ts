@@ -105,11 +105,7 @@ const PROJECTS_DATA: Project[] = [
       alt: 'Tual Armada — Ankara’da modern villa ve rezidans projesi',
     },
     galleryImages: [
-      { src: img('tual-armada/real-villa.jpg'), alt: 'Tual Armada tamamlanan villa ve bahçe', label: 'Tamamlanan Villa' },
-      { src: img('tual-armada/real-aerial-kule.jpg'), alt: 'Tual Armada tamamlanan proje havadan görünüm', label: 'Havadan' },
-      { src: img('tual-armada/real-aerial.jpg'), alt: 'Tual Armada villalar havadan', label: 'Havadan Villalar' },
-      { src: img('tual-armada/real-balkon.jpg'), alt: 'Tual Armada villa balkon manzarası', label: 'Manzara' },
-      { src: img('tual-armada/villa-kule.jpg'), alt: 'Tual Armada villa ve rezidans kule', label: 'Konsept' },
+      { src: img('tual-armada/villa-kule.jpg'), alt: 'Tual Armada villa ve rezidans kule', label: 'Genel' },
       { src: img('tual-armada/aerial.jpg'), alt: 'Tual Armada kuşbakışı yerleşim', label: 'Yerleşim' },
       { src: img('tual-armada/giris.jpg'), alt: 'Tual Armada — Armada Life giriş kapısı', label: 'Giriş' },
       { src: img('tual-armada/villa-sokak.jpg'), alt: 'Tual Armada villa sokağı', label: 'Villalar' },
