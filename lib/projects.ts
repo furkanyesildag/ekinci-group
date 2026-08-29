@@ -11,6 +11,7 @@ export const PROJECT_IMAGES = {
 /** Sabit liste sırası: projeler sayfası, grid ve öne çıkan bölümler bu düzene göre */
 const PROJECT_SLUG_ORDER: string[] = [
   'ekinci-prime',
+  'rize-guneysu-toki',
   'oztatli-konutlari',
   'ekinci-royal-park',
   'armada-city',
@@ -79,6 +80,49 @@ const PROJECTS_DATA: Project[] = [
     proximity: [
       { label: 'Konum', distance: 'Merkez', description: 'Veysel Karani Mah., Kurtalan Yolu Cd. No.104' },
       { label: 'Şehir merkezi', distance: 'Yakın', description: 'Siirt çevre yoluna cepheli' },
+    ],
+    featured: true,
+  },
+  {
+    slug: 'rize-guneysu-toki',
+    name: 'Rize Güneysu TOKİ',
+    location: 'Rize / Güneysu',
+    city: 'Rize',
+    status: 'İNŞAAT SÜRÜYOR',
+    category: 'KONUT',
+    year: 2026,
+    tagline: 'Karadeniz’in yeşiliyle iç içe modern yaşam',
+    description:
+      'Rize Güneysu’da, doğal dokuyu koruyan konumu ve deprem yönetmeliğine uygun sağlam yapısıyla hayata geçirdiğimiz TOKİ konut projesi.',
+    narrative: [
+      'Rize Güneysu TOKİ projesi; Karadeniz’in eşsiz yeşil dokusu ve dağ manzarası içinde, çağdaş mimariyle tasarlanmış çok bloklu bir konut yerleşimidir.',
+      'Güncel deprem yönetmeliğine uygun betonarme taşıyıcı sistem, kaliteli cephe ve yalıtım uygulamalarıyla; bölgenin iklim koşullarına dayanıklı, uzun ömürlü yapılar inşa ediyoruz.',
+      'Geniş otopark alanları, sosyal donatılar ve çocuk oyun alanlarıyla; aileler için huzurlu ve güvenli bir yaşam çevresi hedefleniyor.',
+    ],
+    heroImage: {
+      src: img('rize-guneysu/hero.jpg'),
+      alt: 'Rize Güneysu TOKİ — Karadeniz’de inşa edilen konut blokları',
+    },
+    galleryImages: [
+      { src: img('rize-guneysu/genel.jpg'), alt: 'Rize Güneysu TOKİ genel yerleşim', label: 'Genel' },
+      { src: img('rize-guneysu/cephe.jpg'), alt: 'Rize Güneysu TOKİ cephe uygulaması', label: 'Cephe' },
+      { src: img('rize-guneysu/bloklar.jpg'), alt: 'Rize Güneysu TOKİ tamamlanan bloklar', label: 'Bloklar' },
+      { src: img('rize-guneysu/insaat.jpg'), alt: 'Rize Güneysu TOKİ inşaat aşaması', label: 'İnşaat' },
+      { src: img('rize-guneysu/santiye.jpg'), alt: 'Rize Güneysu TOKİ şantiye görünümü', label: 'Şantiye' },
+      { src: img('rize-guneysu/sokak.jpg'), alt: 'Rize Güneysu TOKİ ara sokak', label: 'Detay' },
+    ],
+    amenities: [
+      { icon: 'foundation', title: 'Deprem Yönetmeliğine Uygun', description: 'Güçlü betonarme taşıyıcı sistem' },
+      { icon: 'ac_unit', title: 'Isı & Su Yalıtımı', description: 'Karadeniz iklimine uygun cephe' },
+      { icon: 'local_parking', title: 'Otopark Alanları', description: 'Geniş açık otopark' },
+      { icon: 'child_friendly', title: 'Çocuk Oyun Alanı', description: 'Güvenli sosyal donatı' },
+      { icon: 'landscape', title: 'Doğa Manzarası', description: 'Yeşil yamaçlar ve dağ manzarası' },
+      { icon: 'shield', title: 'Kaliteli İşçilik', description: 'Denetimli üretim süreci' },
+    ],
+    floorPlans: [{ label: 'TOKİ konut tipi daireler' }],
+    proximity: [
+      { label: 'Konum', distance: 'Güneysu', description: 'Rize / Güneysu, Karadeniz Bölgesi' },
+      { label: 'Doğa', distance: 'İç içe', description: 'Yeşil yamaçlar ve dağ manzarası' },
     ],
     featured: true,
   },
