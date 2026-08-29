@@ -8,7 +8,7 @@ import Badge from '@/components/ui/Badge'
 import MaterialIcon from '@/components/ui/MaterialIcon'
 
 export default function ProjectsHero() {
-  const projects = getFeaturedProjects().slice(0, 2)
+  const projects = getFeaturedProjects().slice(0, 3)
   const [current, setCurrent] = useState(0)
   const proj = projects[current]
 

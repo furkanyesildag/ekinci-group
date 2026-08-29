@@ -11,8 +11,9 @@ export const PROJECT_IMAGES = {
 /** Sabit liste sırası: projeler sayfası, grid ve öne çıkan bölümler bu düzene göre */
 const PROJECT_SLUG_ORDER: string[] = [
   'ekinci-prime',
-  'rize-guneysu-toki',
+  'tual-armada',
   'oztatli-konutlari',
+  'rize-guneysu-toki',
   'ekinci-royal-park',
   'armada-city',
   'mar-vista',
@@ -80,6 +81,51 @@ const PROJECTS_DATA: Project[] = [
     proximity: [
       { label: 'Konum', distance: 'Merkez', description: 'Veysel Karani Mah., Kurtalan Yolu Cd. No.104' },
       { label: 'Şehir merkezi', distance: 'Yakın', description: 'Siirt çevre yoluna cepheli' },
+    ],
+    featured: true,
+  },
+  {
+    slug: 'tual-armada',
+    name: 'Tual Armada',
+    location: 'Ankara',
+    city: 'Ankara',
+    status: 'TAMAMLANDI',
+    category: 'KONUT',
+    year: 2025,
+    tagline: 'Ankara’da seçkin villa ve rezidans yaşamı',
+    description:
+      'Müstakil lüks villalar ve modern rezidans kuleden oluşan, Ankara’da tamamlanmış prestijli karma konut projesi — Armada Life konsepti.',
+    narrative: [
+      'Tual Armada; şehrin içinde doğayla iç içe, geniş peyzaj alanları ve düzenli yerleşimiyle öne çıkan seçkin bir yaşam projesidir.',
+      'Özel bahçeli müstakil villalar ile modern rezidans dairelerini bir arada sunan proje, kapalı site güvenliği ve sosyal donatılarıyla ayrıcalıklı bir yaşam standardı sağlar.',
+      'Zamansız mimari çizgisi, kaliteli malzeme seçimi ve merkezi konumuyla; aileler ve yatırımcılar için Ankara’nın öne çıkan referans projelerinden biridir.',
+    ],
+    heroImage: {
+      src: img('tual-armada/hero.jpg'),
+      alt: 'Tual Armada — Ankara’da modern villa ve rezidans projesi',
+    },
+    galleryImages: [
+      { src: img('tual-armada/villa-kule.jpg'), alt: 'Tual Armada villa ve rezidans kule', label: 'Genel' },
+      { src: img('tual-armada/aerial.jpg'), alt: 'Tual Armada kuşbakışı yerleşim', label: 'Yerleşim' },
+      { src: img('tual-armada/giris.jpg'), alt: 'Tual Armada — Armada Life giriş kapısı', label: 'Giriş' },
+      { src: img('tual-armada/villa-sokak.jpg'), alt: 'Tual Armada villa sokağı', label: 'Villalar' },
+      { src: img('tual-armada/ic-sokak.jpg'), alt: 'Tual Armada iç yaşam sokağı', label: 'İç Sokak' },
+      { src: img('tual-armada/kule.jpg'), alt: 'Tual Armada rezidans kule', label: 'Rezidans' },
+      { src: img('tual-armada/kule2.jpg'), alt: 'Tual Armada rezidans cephe', label: 'Kule' },
+      { src: img('tual-armada/yerlesim.jpg'), alt: 'Tual Armada vaziyet planı', label: 'Vaziyet Planı' },
+    ],
+    amenities: [
+      { icon: 'villa', title: 'Müstakil Villalar', description: 'Özel bahçeli lüks villalar' },
+      { icon: 'apartment', title: 'Rezidans Kule', description: 'Modern rezidans daireleri' },
+      { icon: 'shield', title: 'Kapalı Site Güvenliği', description: '7/24 kontrollü giriş' },
+      { icon: 'local_parking', title: 'Özel Otopark', description: 'Villa başına otopark' },
+      { icon: 'park', title: 'Peyzaj & Yeşil Alan', description: 'Düzenli bahçe ve sosyal alan' },
+      { icon: 'location_city', title: 'Merkezi Konum', description: 'Ankara’da şehirle iç içe' },
+    ],
+    floorPlans: [{ label: 'Müstakil villalar ve rezidans daireleri' }],
+    proximity: [
+      { label: 'Konum', distance: 'Ankara', description: 'Şehir içinde, ana ulaşım akslarına yakın' },
+      { label: 'Çevre', distance: 'Yakın', description: 'Yeşil alanlar ve sosyal olanaklar' },
     ],
     featured: true,
   },
