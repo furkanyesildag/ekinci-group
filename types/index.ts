@@ -45,6 +45,8 @@ export interface Project {
   catalogUrl?: string
   /** Proje tanıtım videosu yolu (opsiyonel) */
   videoUrl?: string
+  /** Tamamlanmış projeden gerçek fotoğraflar (16:9, kırpmasız gösterilir) */
+  realPhotos?: ProjectImage[]
 }
 
 export interface OfficeLocation {

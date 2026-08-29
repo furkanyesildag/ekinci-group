@@ -129,6 +129,11 @@ const PROJECTS_DATA: Project[] = [
     ],
     featured: true,
     videoUrl: '/images/tual-armada/tanitim.mp4',
+    realPhotos: [
+      { src: img('tual-armada/real-villa.jpg'), alt: 'Tual Armada tamamlanan villa ve bahçe' },
+      { src: img('tual-armada/real-aerial-kule.jpg'), alt: 'Tual Armada tamamlanan proje havadan' },
+      { src: img('tual-armada/real-aerial.jpg'), alt: 'Tual Armada villalar havadan görünüm' },
+    ],
   },
   {
     slug: 'rize-guneysu-toki',

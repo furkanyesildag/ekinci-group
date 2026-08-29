@@ -4,6 +4,7 @@ import { PROJECTS, getProjectBySlug } from '@/lib/projects'
 import DetailHero from '@/components/proje-detay/DetailHero'
 import ProjectNarrative from '@/components/proje-detay/ProjectNarrative'
 import BentoGallery from '@/components/proje-detay/BentoGallery'
+import ProjectRealPhotos from '@/components/proje-detay/ProjectRealPhotos'
 import ProjectVideo from '@/components/proje-detay/ProjectVideo'
 import AmenitiesGrid from '@/components/proje-detay/AmenitiesGrid'
 import FloorPlans from '@/components/proje-detay/FloorPlans'
@@ -36,6 +37,7 @@ export default function ProjeDetayPage({ params }: Props) {
       <DetailHero project={project} />
       <ProjectNarrative project={project} />
       <BentoGallery project={project} />
+      <ProjectRealPhotos project={project} />
       <ProjectVideo project={project} />
       <AmenitiesGrid project={project} />
       <FloorPlans project={project} />
