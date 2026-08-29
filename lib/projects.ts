@@ -128,7 +128,6 @@ const PROJECTS_DATA: Project[] = [
       { label: 'Çevre', distance: 'Yakın', description: 'Yeşil alanlar ve sosyal olanaklar' },
     ],
     featured: true,
-    videoUrl: '/images/tual-armada/tanitim.mp4',
     realPhotos: [
       { src: img('tual-armada/real-villa.jpg'), alt: 'Tual Armada tamamlanan villa ve bahçe' },
       { src: img('tual-armada/real-aerial-kule.jpg'), alt: 'Tual Armada tamamlanan proje havadan' },
