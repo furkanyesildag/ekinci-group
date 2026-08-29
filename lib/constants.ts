@@ -16,7 +16,7 @@ export const COMPANY = {
   phone: '+90 545 735 91 23',
   whatsapp: '905457359123',
   email: 'info@ekincigroup.com',
-  address: 'Siirt, Türkiye — Merkez Ofis',
+  address: 'Ankara, Türkiye — Merkez Ofis',
 }
 
 export const STATS = [
