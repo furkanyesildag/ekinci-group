@@ -13,6 +13,8 @@ export interface RefItem {
   classrooms?: number  // derslik (eğitim)
   types?: string       // "3+1, 4+1"
   note?: string        // "+1 Cami", "Kızılay Binası", "İş atölyesi" vb.
+  /** Toplam/özet kartı (blok yerine "Bina" etiketi kullanılır) */
+  summary?: boolean
 }
 
 export interface RefCategory {
@@ -39,6 +41,7 @@ export const REF_CATEGORIES: RefCategory[] = [
       { name: 'Armada Konutları', units: 50, types: '3+1' },
       { name: 'Ekinci Group Öztatlı Konutları', blocks: 10, units: 232, commercial: 35, types: '4+1' },
       { name: 'Ekinci Tower', units: 72, commercial: 7, types: '1+1, 2+1, 3+1' },
+      { name: 'Siirt Geneli — Diğer Tamamlanan Yapılar', location: 'Siirt', units: 1330, blocks: 39, commercial: 120, summary: true },
     ],
   },
   {

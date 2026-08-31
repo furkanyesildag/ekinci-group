@@ -20,18 +20,20 @@ function Chip({ icon, children }: { icon: string; children: React.ReactNode }) {
 
 function Card({ item, icon, featured }: { item: RefItem; icon: string; featured: boolean }) {
   const heroValue = item.units ?? item.classrooms
+  const heroText = heroValue ? heroValue.toLocaleString('tr-TR') : ''
   const heroLabel = item.units ? 'Daire' : item.classrooms ? 'Derslik' : ''
+  const highlight = featured || Boolean(item.summary)
 
   return (
     <SpotlightCard
       className={`group relative flex h-full min-h-[15rem] flex-col overflow-hidden rounded-2xl border p-6 transition-all duration-300 hover:-translate-y-1.5 hover:shadow-ambient-xl ${
-        featured
+        highlight
           ? 'border-primary/40 bg-gradient-to-br from-primary-fixed/20 via-surface-container-lowest to-surface-container-lowest shadow-ambient-md'
           : 'border-outline-variant/40 bg-surface-container-lowest shadow-ambient hover:border-primary/30'
       }`}
-      glow={featured ? 'rgba(202,163,105,0.28)' : 'rgba(202,163,105,0.16)'}
+      glow={highlight ? 'rgba(202,163,105,0.28)' : 'rgba(202,163,105,0.16)'}
     >
-      {featured && <BorderBeam duration={9} colorFrom="#CAA369" colorTo="#fbd092" />}
+      {highlight && <BorderBeam duration={9} colorFrom="#CAA369" colorTo="#fbd092" />}
 
       {/* Üst ince altın vurgu (hover) */}
       <span className="pointer-events-none absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-primary-fixed to-transparent opacity-0 transition-opacity duration-300 group-hover:opacity-100" />
@@ -39,7 +41,7 @@ function Card({ item, icon, featured }: { item: RefItem; icon: string; featured:
       {/* Filigran sayı */}
       {heroValue && (
         <span className="pointer-events-none absolute -bottom-4 -right-2 select-none font-headline text-[6rem] font-bold leading-none text-primary/[0.05]">
-          {heroValue}
+          {heroText}
         </span>
       )}
 
@@ -72,7 +74,7 @@ function Card({ item, icon, featured }: { item: RefItem; icon: string; featured:
         {heroValue ? (
           <div className="flex items-baseline gap-1.5">
             <span className="font-headline text-4xl md:text-5xl font-bold leading-none tracking-tight text-primary">
-              {heroValue}
+              {heroText}
             </span>
             <span className="font-body text-[11px] font-bold uppercase tracking-[0.14em] text-primary/60">
               {heroLabel}
@@ -85,7 +87,7 @@ function Card({ item, icon, featured }: { item: RefItem; icon: string; featured:
 
       {/* Metrik çipleri + tip */}
       <div className="relative mt-auto flex flex-wrap items-center gap-2 pt-5">
-        {item.blocks ? <Chip icon="apartment">{item.blocks} Blok</Chip> : null}
+        {item.blocks ? <Chip icon="apartment">{item.blocks} {item.summary ? 'Bina' : 'Blok'}</Chip> : null}
         {item.commercial ? <Chip icon="storefront">{item.commercial} Ticari</Chip> : null}
         {item.note && heroValue ? <Chip icon="add_circle">{item.note}</Chip> : null}
         {item.types ? (
@@ -100,8 +102,8 @@ function Card({ item, icon, featured }: { item: RefItem; icon: string; featured:
 
 export default function CategorySection({ category, index }: Props) {
   const alt = index % 2 === 1
-  // Kategorinin en büyük projesi (en çok daire) öne çıkarılır
-  const maxUnits = Math.max(0, ...category.items.map((i) => i.units ?? 0))
+  // Kategorinin en büyük projesi (en çok daire) öne çıkarılır — özet kartı hariç
+  const maxUnits = Math.max(0, ...category.items.filter((i) => !i.summary).map((i) => i.units ?? 0))
 
   return (
     <section className={alt ? 'bg-surface-container py-14 md:py-20' : 'py-14 md:py-20'}>
@@ -115,7 +117,7 @@ export default function CategorySection({ category, index }: Props) {
           </div>
           <span className="hidden sm:flex items-center gap-2 rounded-full border border-outline-variant/30 px-4 py-1.5 font-body text-xs font-bold text-on-surface-variant">
             <MaterialIcon icon={category.icon} size={16} className="text-primary" />
-            {category.items.length} proje
+            {category.items.filter((i) => !i.summary).length} proje
           </span>
         </div>
 
